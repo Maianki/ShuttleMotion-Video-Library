@@ -1,13 +1,72 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://shuttleui.netlify.app/components/components-styles/shuttleUI-main.css");
+
+:root{
+  --PRIMARY-COLOR:#4b4453;
+  --PRIMARY-COLOR-DARK:#3c3642;
+  --SECONDARY-COLOR:#004052;
+  --SECONDARY-COLOR-2:#005066;
+  --FOOTER-BG-COLOR:#181818;
+  --TEST-COLOR:#002029;
+  --WHITE-COLOR:#FFF;
+  --TEXT-HIGHLIGHT-COLOR:#767971;
+  --CHIPS-TEXT-COLOR:#c4ceb2;
+  --ACCENT-COLOR:#767971;
+  --CARD-SHADOW-1:rgba(0,0,0,0.12);
+  --CARD-SHADOW-2:rgba(0,0,0,0.24);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/*RESET CSS*/
+*{
+  margin: 0;
+  padding:0;
+  font-size: 62.5%;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--FOOTER-BG-COLOR) #3c3642;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 1.2rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3c3642;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--FOOTER-BG-COLOR);
+  border-radius: 20px;
+  border: 3px solid #3c3642;
+}
+
+body{
+  background-color:#3c3642;
+}
+.text-highlight{
+  color: var(--TEXT-HIGHLIGHT-COLOR);
+}
+
+.card{
+  box-shadow: 0 1px 3px var(--CARD-SHADOW-1), 0 1px 2px var(--CARD-SHADOW-2);
+}
+
+.chip{
+  box-sizing: border-box;
+  min-width: max-content;
+  padding: .4rem 1.2rem;
+  font-size:1.6rem;
+  cursor: pointer;
+  border-radius: 50px;
+  border: thin solid var(--TEXT-HIGHLIGHT-COLOR);
+  color:var(--CHIPS-TEXT-COLOR);
+  opacity: .8;
+}
+
+.chip:hover{
+  background-color: var(--TEXT-HIGHLIGHT-COLOR);
+  color: var(--WHITE-COLOR);
 }

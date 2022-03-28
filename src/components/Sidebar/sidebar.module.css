@@ -1,0 +1,74 @@
+.sidebar{
+    background-color: var(--PRIMARY-COLOR-DARK);
+    max-width:24rem;
+    height: calc(100vh - 8rem);
+    color: var(--WHITE-COLOR);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right:1px solid var(--CARD-SHADOW-1);
+    padding-top:3.6rem;
+}
+
+.socialLinks{
+    font-size: 3.2rem;
+    padding:1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.socialLinks:hover{
+    background-color: var(--PRIMARY-COLOR);
+    color: var(--WHITE-COLOR);
+}
+
+.sidebarIcon{
+    font-size: 3.4rem;
+    display: inline-block;
+    padding:0 1rem;
+}
+
+.sidebarMenuNavLink{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.sidebarMenuNavLink:hover{
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+ol{
+    margin: 0;
+}
+
+.sidebarMenu{
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border-left:6px solid var(--PRIMARY-COLOR-DARK)
+}
+
+.sidebarMenu:hover{
+    background-color:var(--PRIMARY-COLOR);
+    border-left:6px solid var(--TEXT-HIGHLIGHT-COLOR)
+}
+
+a{
+    color: inherit;
+}
+
+.socialsMenu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0 0 2rem;
+}
+
+.socialNavLinks{
+    font-size: 6.6rem;
+    cursor: pointer;
+    padding:0 1rem;
+}
+

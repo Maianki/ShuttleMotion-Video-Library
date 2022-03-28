@@ -10,18 +10,6 @@
     padding-top:3.6rem;
 }
 
-.socialLinks{
-    font-size: 3.2rem;
-    padding:1rem;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.socialLinks:hover{
-    background-color: var(--PRIMARY-COLOR);
-    color: var(--WHITE-COLOR);
-}
-
 .sidebarIcon{
     font-size: 3.4rem;
     display: inline-block;

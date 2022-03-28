@@ -4,9 +4,7 @@
   --PRIMARY-COLOR:#4b4453;
   --PRIMARY-COLOR-DARK:#3c3642;
   --SECONDARY-COLOR:#004052;
-  --SECONDARY-COLOR-2:#005066;
-  --FOOTER-BG-COLOR:#181818;
-  --TEST-COLOR:#002029;
+  --SCROLLBAR-BG-COLOR:#181818;
   --WHITE-COLOR:#FFF;
   --TEXT-HIGHLIGHT-COLOR:#767971;
   --CHIPS-TEXT-COLOR:#c4ceb2;
@@ -25,7 +23,7 @@
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--FOOTER-BG-COLOR) #3c3642;
+  scrollbar-color: var(--SCROLLBAR-BG-COLOR) var(--PRIMARY-COLOR-DARK);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -34,17 +32,17 @@
 }
 
 *::-webkit-scrollbar-track {
-  background: #3c3642;
+  background: var(--PRIMARY-COLOR-DARK);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: var(--FOOTER-BG-COLOR);
+  background-color: var(--SCROLLBAR-BG-COLOR);
   border-radius: 20px;
-  border: 3px solid #3c3642;
+  border: 3px solid var(--PRIMARY-COLOR-DARK);
 }
 
 body{
-  background-color:#3c3642;
+  background-color:var(--PRIMARY-COLOR-DARK);
 }
 .text-highlight{
   color: var(--TEXT-HIGHLIGHT-COLOR);

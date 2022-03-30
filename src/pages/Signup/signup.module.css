@@ -1,0 +1,32 @@
+.signupMain{
+    /* height: calc(100vh - 8rem); */
+    /* justify-content: center; */
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+   /*forms styling*/
+  
+   .formHeading {
+    margin-left: 0;
+  }
+  
+  .formContainer {
+    min-width: 40rem;
+    border-radius: 10px;
+    background-color: var(--GRAY-COLOR);
+    padding: 4rem;
+  }
+
+  .togglePassword {
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: -3rem;
+  }
+  
+  .formLinkText{
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--PRIMARY-COLOR);
+  }

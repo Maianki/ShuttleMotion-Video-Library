@@ -2,6 +2,8 @@
     padding: 0 0 1rem;
     min-width: 32rem;
     border-radius: 0;
+    background-color: transparent;
+    color: var(--WHITE-COLOR);
 }
 
 .videoMenu{
@@ -21,6 +23,7 @@
 }
 
 .videoCardFooter{
-    justify-content: flex-end;
+    align-items: center;
+    padding-left:4.1rem;
 }
 

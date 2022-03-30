@@ -1,0 +1,21 @@
+.chip{
+    min-width: max-content;
+    padding: .4rem 1.2rem;
+    font-size:1.6rem;
+    cursor: pointer;
+    border-radius: 50px;
+    border: thin solid var(--TEXT-HIGHLIGHT-COLOR);
+    color:var(--CHIPS-TEXT-COLOR);
+    background-color: inherit;
+    opacity: .8;
+  }
+
+  .chip:hover{
+    background-color: var(--TEXT-HIGHLIGHT-COLOR);
+    color: var(--WHITE-COLOR);
+  }
+
+  .chipActive{
+    background-color: var(--TEXT-HIGHLIGHT-COLOR);
+    color: var(--WHITE-COLOR);
+  }

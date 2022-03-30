@@ -1,23 +1,9 @@
 import React from "react";
 import styles from "./videolisting.module.css";
-import { v4 as uuid } from "uuid";
+import { videos } from "backend/db/videos";
 import { Navbar, Sidebar, VideoCard, Chips } from "components";
 
 export function VideoListing() {
-  const videos = [
-    {
-      _id: uuid(),
-    },
-    {
-      _id: uuid(),
-    },
-    {
-      _id: uuid(),
-    },
-    {
-      _id: uuid(),
-    },
-  ];
   return (
     <div className={styles.container}>
       <section className={styles.navbar}>

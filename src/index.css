@@ -1,4 +1,5 @@
 @import url("https://shuttleui.netlify.app/components/components-styles/shuttleUI-main.css");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
 :root{
   --PRIMARY-COLOR:#4b4453;
@@ -9,6 +10,7 @@
   --TEXT-HIGHLIGHT-COLOR:#767971;
   --CHIPS-TEXT-COLOR:#c4ceb2;
   --ACCENT-COLOR:#767971;
+  --GRAY-COLOR:#d8cccc;
   --CARD-SHADOW-1:rgba(0,0,0,0.12);
   --CARD-SHADOW-2:rgba(0,0,0,0.24);
 }
@@ -18,6 +20,10 @@
   margin: 0;
   padding:0;
   font-size: 62.5%;
+}
+
+html{
+  font-family: 'Lato', sans-serif;
 }
 
 /* Works on Firefox */
@@ -49,7 +55,7 @@ body{
 }
 
 .card{
-  box-shadow: 0 1px 3px var(--CARD-SHADOW-1), 0 1px 2px var(--CARD-SHADOW-2);
+  box-shadow:none;
 }
 
 .chip{
@@ -67,4 +73,20 @@ body{
 .chip:hover{
   background-color: var(--TEXT-HIGHLIGHT-COLOR);
   color: var(--WHITE-COLOR);
+}
+
+.text-primary{
+  color: var(--PRIMARY-COLOR);
+}
+
+.form-input {
+  border-radius: 5px;
+  font-size: 1.4rem;
+  border: 1px solid var(--PRIMARY-COLOR);
+}
+
+.form-btn {
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }

@@ -12,16 +12,12 @@ export function useFilteredData() {
     videosAndCategory: { videos, filterByCategory },
   } = useVideosAndCategories();
 
-  console.log(filterByCategory);
   const filteredData = JSON.parse(JSON.stringify(videos));
-  const getFilteredByCategory = (videos, filterByCategory) => {
-    if (filterByCategory === "All") {
-      return videos;
-    } else {
-      return videos.filter(({ category }) => category === filterByCategory);
-    }
-  };
-
+  const getFilteredByCategory = (videos, filterByCategory) =>
+    filterByCategory === "All"
+      ? videos
+      : videos.filter(({ category }) => category === filterByCategory);
+   
   const filteredDataByCategory = getFilteredByCategory(
     filteredData,
     filterByCategory

@@ -4,7 +4,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import {
   videosAndCategoryInitialState,
   videosAndCategoryReducer,
-} from "reducers/videosAndCategoryReducer";
+} from "reducers/videos-and-category-reducer";
 
 const VideosAndCategoryContext = createContext(null);
 

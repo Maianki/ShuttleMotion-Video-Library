@@ -19,6 +19,7 @@
 *{
   margin: 0;
   padding:0;
+  box-sizing: border-box;
   font-size: 62.5%;
 }
 
@@ -56,23 +57,6 @@ body{
 
 .card{
   box-shadow:none;
-}
-
-.chip{
-  box-sizing: border-box;
-  min-width: max-content;
-  padding: .4rem 1.2rem;
-  font-size:1.6rem;
-  cursor: pointer;
-  border-radius: 50px;
-  border: thin solid var(--TEXT-HIGHLIGHT-COLOR);
-  color:var(--CHIPS-TEXT-COLOR);
-  opacity: .8;
-}
-
-.chip:hover{
-  background-color: var(--TEXT-HIGHLIGHT-COLOR);
-  color: var(--WHITE-COLOR);
 }
 
 .text-primary{

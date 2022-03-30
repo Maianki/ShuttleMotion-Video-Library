@@ -8,7 +8,11 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Matches",
+    categoryName: "All",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Match Highlights",
   },
   {
     _id: uuid(),
@@ -20,6 +24,6 @@ export const categories = [
   },
   {
     _id: uuid(),
-    categoryName: "Players interview",
+    categoryName: "Players Interview",
   },
 ];

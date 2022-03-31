@@ -9,6 +9,6 @@ export function RestrictAuth() {
   const location = useLocation();
 
   if (encodedToken && isAuthenticated)
-    return <Navigate to='/' state={{ from: location }} replace></Navigate>;
+    return <Navigate to='/' state={{ from: location }} replace />;
   return <Outlet />;
 }

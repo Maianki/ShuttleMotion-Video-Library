@@ -9,5 +9,5 @@ export function RequireAuth() {
   const location = useLocation();
 
   if (encodedToken && isAuthenticated) return <Outlet />;
-  return <Navigate to='/login' state={{ from: location }} replace></Navigate>;
+  return <Navigate to='/login' state={{ from: location }} replace />;
 }

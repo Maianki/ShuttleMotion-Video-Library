@@ -3,6 +3,7 @@ import { Input, Label, Navbar } from "components";
 import { useDocumentTitle } from "hooks";
 import { BiEye, BiEyeSlash } from "assets";
 import { Link } from "react-router-dom";
+import { useAuth } from "context";
 import styles from "./login.module.css";
 
 export function Login() {
@@ -13,7 +14,17 @@ export function Login() {
     isRememberMe: true,
   });
 
+  const { handleSignIn } = useAuth();
   const [showPassWord, setShowPassword] = useState(false);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    handleSignIn(userDetails);
+  };
+
+  const guestLoginHandler = (e) => {
+    e.preventDefault();
+    handleSignIn({ email: "adarshbalika@gmail.com", password: "adarsh123" });
+  };
 
   return (
     <div className='container'>
@@ -21,7 +32,7 @@ export function Login() {
       <main className={`${styles.loginMain} flex-column`}>
         <div className={`${styles.formContainer} card`}>
           <h2 className={styles.formHeading}>Login</h2>
-          <form>
+          <form onSubmit={submitHandler}>
             <div className='form-set'>
               <Label labelFor='email' labelName='Email' />
               <Input
@@ -57,7 +68,7 @@ export function Login() {
             <div className='form-check md-vt-1 flex-row'>
               <input
                 type='checkbox'
-                value={userDetails.isRememberMe}
+                checked={userDetails.isRememberMe}
                 onChange={() =>
                   setUserDetails({
                     ...userDetails,
@@ -87,7 +98,10 @@ export function Login() {
                 className={`btn btn-primary form-btn text-center`}
                 value='Sign In'
               />
-              <button className='btn btn-secondary form-btn text-center'>
+              <button
+                className='btn btn-secondary form-btn text-center'
+                onClick={guestLoginHandler}
+              >
                 Guest Login
               </button>
               <p

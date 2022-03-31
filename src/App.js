@@ -1,14 +1,31 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { VideoListing, Login, Signup } from "pages";
+import {
+  VideoListing,
+  Login,
+  Signup,
+  History,
+  Liked,
+  WatchLater,
+  Playlist,
+} from "pages";
+import { RequireAuth, RestrictAuth } from "components";
 
 function App() {
   return (
     <div className='App'>
       <Routes>
         <Route path='/' element={<VideoListing />}></Route>
-        <Route path='login' element={<Login />}></Route>
-        <Route path='sign-up' element={<Signup />}></Route>
+        <Route element={<RestrictAuth />}>
+          <Route path='login' element={<Login />}></Route>
+          <Route path='sign-up' element={<Signup />}></Route>
+        </Route>
+        <Route element={<RequireAuth />}>
+          <Route path='/history' element={<History />}></Route>
+          <Route path='/playlist' element={<Playlist />}></Route>
+          <Route path='/liked' element={<Liked />}></Route>
+          <Route path='/watch-later' element={<WatchLater />}></Route>
+        </Route>
       </Routes>
     </div>
   );

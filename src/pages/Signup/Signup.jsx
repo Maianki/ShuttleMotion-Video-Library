@@ -3,6 +3,7 @@ import { Input, Label, Navbar } from "components";
 import { useDocumentTitle } from "hooks";
 import { BiEye, BiEyeSlash } from "assets";
 import { Link } from "react-router-dom";
+import { useAuth } from "context";
 import styles from "./signup.module.css";
 
 export function Signup() {
@@ -14,8 +15,10 @@ export function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    termsAndCondition: false,
+    termsAndCondition: true,
   });
+
+  const { handleSignup } = useAuth();
 
   const [showPassWord, setShowPassword] = useState({
     password: false,
@@ -25,6 +28,7 @@ export function Signup() {
   const submitHandler = (e) => {
     e.preventDefault();
 
+    handleSignup(userDetails);
     setUserDetails({
       firstName: "",
       lastName: "",

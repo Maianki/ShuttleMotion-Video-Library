@@ -10,6 +10,12 @@ export function Input({
   setUserDetails,
   userDetails,
 }) {
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setUserDetails({ ...userDetails, [name]: value });
+  };
+
   return (
     <input
       className='form-input form-input-lg pd-1'
@@ -18,6 +24,7 @@ export function Input({
       name={name}
       value={value}
       placeholder={placeholder}
+      onChange={handleInput}
       required={isRequired}
     />
   );

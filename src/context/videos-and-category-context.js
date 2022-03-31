@@ -1,5 +1,5 @@
 import axios from "axios";
-import { videos_API, categories_API } from "utils/APIEndPoints";
+import { VIDEOS_API, CATEGORIES_API } from "utils/APIEndPoints";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import {
   videosAndCategoryInitialState,
@@ -17,7 +17,7 @@ const VideosAndCategoryProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(videos_API);
+        const response = await axios.get(VIDEOS_API);
         if (response.status === 200) {
           const {
             data: { videos },
@@ -36,7 +36,7 @@ const VideosAndCategoryProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(categories_API);
+        const response = await axios.get(CATEGORIES_API);
         if (response.status === 200) {
           const {
             data: { categories },

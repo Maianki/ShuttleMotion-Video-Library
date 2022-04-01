@@ -3,6 +3,7 @@ import styles from "./videolisting.module.css";
 import { useVideosAndCategories } from "context/videos-and-category-context";
 import { Navbar, Sidebar, VideoCard, Chips } from "components";
 import { useFilteredData } from "hooks/useFilteredData";
+import { Link } from "react-router-dom";
 
 export function VideoListing() {
   const {
@@ -42,7 +43,11 @@ export function VideoListing() {
         </div>
         <section className={styles.videosThumbnail}>
           {filteredData.map((video) => {
-            return <VideoCard key={video._id} video={video} />;
+            return (
+              <Link key={video._id} to={`watch/${video.videoID}`}>
+                <VideoCard video={video} />
+              </Link>
+            );
           })}
         </section>
       </section>

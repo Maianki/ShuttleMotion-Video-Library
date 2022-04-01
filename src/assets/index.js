@@ -15,6 +15,7 @@ import NatWeerasakProfile from "./images/creator-profile/Nat-Weerasak_profile.jp
 import OlympicsProfile from "./images/creator-profile/olympics_profile.jpg";
 import ShuttleAmazingProfile from "./images/creator-profile/shuttle-amazing_profile.jpg";
 import VisitLondonProfile from "./images/creator-profile/visit-london_profile.jpg";
+import SindhuMatchThumbnail from "./images/video-thumbnail/PV-Sindhu-Match.png";
 
 export * from "./icons";
 export {
@@ -26,6 +27,7 @@ export {
   WorlcupInterviewThumbnail,
   LinDanChongThumbnail,
   SindhuInterviewThumbnail,
+  SindhuMatchThumbnail,
   SaniaMatchThumbnail,
   BiomechanicsTricksThumbnail,
   BachpanPlaySchoolProfile,

@@ -8,6 +8,7 @@ import {
   Liked,
   WatchLater,
   Playlist,
+  WatchVideo,
 } from "pages";
 import { RequireAuth, RestrictAuth } from "components";
 
@@ -26,6 +27,7 @@ function App() {
           <Route path='/liked' element={<Liked />}></Route>
           <Route path='/watch-later' element={<WatchLater />}></Route>
         </Route>
+        <Route path='/watch/:videoID' element={<WatchVideo />}></Route>
       </Routes>
     </div>
   );

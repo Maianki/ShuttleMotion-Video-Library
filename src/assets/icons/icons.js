@@ -89,3 +89,19 @@ export function PhLinkedinLogoDuotone(props) {
     </svg>
   );
 }
+
+
+export function TablerPlaylistX(props) {
+  return (
+    <svg width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+      <path
+        fill='none'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+        d='M19 8H5m0 4h7m0 4H5m11-2l4 4m0-4l-4 4'
+      ></path>
+    </svg>
+  );
+}

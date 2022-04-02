@@ -1,6 +1,5 @@
 import { Navbar, Sidebar, VideoCard } from "components";
-import { useVideosAndCategories } from "context";
-import React from "react";
+import { useVideosAndCategories, useVideosOperations } from "context";
 import { useParams, Link } from "react-router-dom";
 import styles from "./watchvideo.module.css";
 import { RiPlayListAddFill } from "react-icons/ri";
@@ -15,14 +14,29 @@ export function WatchVideo() {
   } = useVideosAndCategories();
 
   const {
+    manageVideoLike,
+    manageWatchLater,
+    videosOperations: { likedVideos, watchLaterVideos },
+  } = useVideosOperations();
+
+  const video = videos.find((video) => videoID === video.videoID);
+  const {
     title,
     description,
     creator: { name: creatorName, profile: creatorProfile },
     views,
     category,
-  } = videos.find((video) => videoID === video.videoID);
+  } = video;
 
   const similarVideos = getSimilarVideos(category, videos, videoID);
+
+  const btnLikeHandler = () => {
+    manageVideoLike(video);
+  };
+
+  const btnWatchLaterHandler = () => {
+    manageWatchLater(video);
+  };
 
   return (
     <div className={styles.container}>
@@ -39,7 +53,7 @@ export function WatchVideo() {
             <iframe
               src={`https://www.youtube.com/embed/${videoID}?rel=0`}
               title='YouTube video player'
-              frameBorder='1'
+              frameBorder='0'
             ></iframe>
           </div>
 
@@ -55,15 +69,36 @@ export function WatchVideo() {
               <span className={`text-md  ${styles.videoViewsCount}`}>
                 | {views} views
               </span>
-              <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
-                <AiOutlineLike /> <span className='text-md pd-ht-1'>Like</span>
+              <button
+                className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                onClick={btnLikeHandler}
+              >
+                {likedVideos.find(({ _id }) => _id === video._id) ? (
+                  <>
+                    <AiFillLike />
+                    <span className='text-md pd-ht-1'>Liked</span>
+                  </>
+                ) : (
+                  <>
+                    <AiOutlineLike />
+                    <span className='text-md pd-ht-1'>Like</span>
+                  </>
+                )}
               </button>
               <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
                 <RiPlayListAddFill />
                 <span className='text-md pd-ht-1'>Save</span>
               </button>
-              <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
-                <BsStopwatch />
+              <button
+                className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                onClick={btnWatchLaterHandler}
+              >
+                {watchLaterVideos.find(({ _id }) => _id === video._id) ? (
+                  <BsStopwatchFill />
+                ) : (
+                  <BsStopwatch />
+                )}
+
                 <span className='text-md pd-ht-1'>Watch Later</span>
               </button>
             </div>

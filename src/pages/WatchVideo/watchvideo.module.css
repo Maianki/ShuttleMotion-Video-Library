@@ -42,7 +42,7 @@
 }
 
 .iframeContainer iframe {
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     box-shadow: 1px 1px 1px 1px var(--CARD-SHADOW-1);
     border-radius: 5px;
     position: absolute;

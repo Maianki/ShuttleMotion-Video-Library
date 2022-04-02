@@ -104,7 +104,7 @@ export const videos = [
       name: "BG Badminton Academy",
     },
     views: "1M",
-    category: "Badminton tutorials",
+    category: "Badminton Tutorials",
     videoID: "S2-G_tbIj80",
     thumbnail: BadmintonTechniquesThumbnail,
   },

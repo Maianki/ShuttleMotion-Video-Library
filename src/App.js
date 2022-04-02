@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import Mockman from "mockman-js";
 import {
   VideoListing,
   Login,
@@ -28,6 +29,7 @@ function App() {
           <Route path='/watch-later' element={<WatchLater />}></Route>
         </Route>
         <Route path='/watch/:videoID' element={<WatchVideo />}></Route>
+        <Route path='/mockman' element={<Mockman />}></Route>
       </Routes>
     </div>
   );

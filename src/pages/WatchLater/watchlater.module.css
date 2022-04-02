@@ -1,0 +1,26 @@
+.container{
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    grid-template-areas: "navbar navbar"
+        "sidebar main";
+}
+
+.navbar {
+    grid-area: navbar;
+
+}
+
+.sidebarNav {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+    height: calc(100vh - 8rem);
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    justify-items: center;
+    padding-top: 5rem;
+    gap: 1rem;
+}

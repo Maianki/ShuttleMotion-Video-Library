@@ -1,4 +1,4 @@
-.container{
+.container {
     display: grid;
     grid-template-columns: 24rem 1fr;
     grid-template-areas: "navbar navbar"
@@ -14,14 +14,18 @@
     grid-area: sidebar;
 }
 
-.main {
-    grid-area: main;
-    height: calc(100vh - 8rem);
-    overflow: auto;
+.topBar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0rem 6rem .8rem 7rem;
 }
 
-.watchlaterVideos {
+.main {
     grid-area: main;
+}
+
+.historyVideos {
     height: calc(100vh - 8rem);
     overflow: auto;
     display: grid;

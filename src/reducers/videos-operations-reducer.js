@@ -1,6 +1,7 @@
 export const videosOperationsInitialState = {
   likedVideos: [],
   watchLaterVideos: [],
+  historyVideos: [],
 };
 
 export const videosOperationsReducer = (state, action) => {
@@ -12,6 +13,9 @@ export const videosOperationsReducer = (state, action) => {
 
     case "MANAGE_WATCHLATER":
       return { ...state, watchLaterVideos: payload };
+
+    case "MANAGE_HISTORY":
+      return { ...state, historyVideos: payload };
 
     default:
       throw Error("Unknown action.");

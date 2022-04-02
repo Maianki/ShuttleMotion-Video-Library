@@ -10,13 +10,21 @@ import { NavLink } from "react-router-dom";
 import { sideNavLinks } from "data";
 
 export function Sidebar() {
+  
   return (
     <aside className={styles.sidebar}>
       <ol className='list-unstyled pd-vt-2'>
         {sideNavLinks.map(({ _id, linkTo, linkName, Icon }) => {
           return (
             <li key={_id} className={styles.sidebarMenu}>
-              <NavLink to={linkTo} className={styles.sidebarMenuNavLink}>
+              <NavLink
+                to={linkTo}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.isNavLinkActive} ${styles.sidebarMenuNavLink}`
+                    : `${styles.isNavLinkInactive} ${styles.sidebarMenuNavLink}`
+                }
+              >
                 <span className={styles.sidebarIcon}>{Icon}</span>
                 {linkName}
               </NavLink>

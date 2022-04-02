@@ -22,20 +22,16 @@
 
 .categoryChips{
     width:100%;
-    padding:1.2rem;
+    padding:1.8rem 8rem 1.6rem;
     display: flex;
     flex-wrap: wrap;
-    padding-left:5rem;
     gap:2rem;
 }
 
 .videosThumbnail{
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left:5rem;
-    gap:5rem;
-    padding-right:5rem;
-    
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    justify-items: center;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }

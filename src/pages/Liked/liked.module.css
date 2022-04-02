@@ -18,9 +18,16 @@
     grid-area: main;
     height: calc(100vh - 8rem);
     overflow: auto;
+}
+
+.likedVideos {
+    grid-area: main;
+    height: calc(100vh - 8rem);
+    overflow: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     justify-items: center;
-    padding-top: 5rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
     gap: 1rem;
 }

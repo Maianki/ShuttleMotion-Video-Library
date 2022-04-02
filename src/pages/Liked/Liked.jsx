@@ -1,7 +1,6 @@
 import React from "react";
-import { Navbar, Sidebar, VideoCard, VideoCardHorizontal } from "components";
+import { Navbar, Sidebar, VideoCard } from "components";
 import styles from "./liked.module.css";
-import { Link } from "react-router-dom";
 import { useVideosOperations } from "context";
 
 export function Liked() {
@@ -19,13 +18,18 @@ export function Liked() {
       </section>
 
       <main className={styles.main}>
-        {likedVideos.map((video) => {
-          return (
-            <Link key={video._id} to={`/watch/${video.videoID}`}>
-              <VideoCard video={video} />
-            </Link>
-          );
-        })}
+        <div className={styles.topBar}>
+          {likedVideos.length > 0 ? (
+            <h2 className='text-center text-highlight'>
+              {likedVideos.length} liked videos
+            </h2>
+          ) : null}
+        </div>
+        <section className={styles.likedVideos}>
+          {likedVideos.map((video) => {
+            return <VideoCard video={video} key={video._id} />;
+          })}
+        </section>
       </main>
     </div>
   );

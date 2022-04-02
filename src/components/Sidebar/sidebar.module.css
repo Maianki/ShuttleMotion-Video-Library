@@ -22,27 +22,28 @@
     align-items: center;
 }
 
-.sidebarMenuNavLink:hover{
-    font-size: 2rem;
-    display: flex;
-    align-items: center;
-}
-
 ol{
     margin: 0;
 }
 
 .sidebarMenu{
     width: 100%;
-    padding: 1rem 1.2rem;
-    border-left:6px solid var(--PRIMARY-COLOR-DARK)
 }
 
 .sidebarMenu:hover{
-    background-color:var(--PRIMARY-COLOR);
-    border-left:6px solid var(--TEXT-HIGHLIGHT-COLOR)
+    color:var(--TEXT-HIGHLIGHT-COLOR);
 }
 
+.isNavLinkActive {
+    background-color: var(--PRIMARY-COLOR);
+    padding: 1rem 1.2rem;
+    border-left: 6px solid var(--TEXT-HIGHLIGHT-COLOR)
+}
+
+.isNavLinkInactive {
+    border-left: 6px solid var(--PRIMARY-COLOR-DARK);
+    padding: 1rem 1.2rem;
+}
 a{
     color: inherit;
 }

@@ -4,7 +4,7 @@ import {
   videosOperationsInitialState,
 } from "reducers/videos-operations-reducer";
 import axios from "axios";
-import { LIKES_API, WATCHLATER_API } from "utils/APIEndPoints";
+import { LIKES_API, WATCHLATER_API, HISTORY_API } from "utils/APIEndPoints";
 import { useAuth } from "./auth-context";
 
 const videosOperationsContext = createContext(null);
@@ -22,7 +22,7 @@ const VideosOperationsProvider = ({ children }) => {
     let response;
     try {
       if (
-        videosOperations.watchLaterVideos.some(({ _id }) => video._id === _id)
+        videosOperations.watchLaterVideos.find(({ _id }) => video._id === _id)
       ) {
         response = await axios.delete(`${WATCHLATER_API}/${video._id}`, {
           headers: { authorization: encodedToken },
@@ -55,7 +55,7 @@ const VideosOperationsProvider = ({ children }) => {
   const manageVideoLike = async (video) => {
     let response;
     try {
-      if (videosOperations.likedVideos.some(({ _id }) => video._id === _id)) {
+      if (videosOperations.likedVideos.find(({ _id }) => video._id === _id)) {
         response = await axios.delete(`${LIKES_API}/${video._id}`, {
           headers: { authorization: encodedToken },
         });
@@ -81,6 +81,44 @@ const VideosOperationsProvider = ({ children }) => {
     }
   };
 
+  const manageDeleteHistory = async (id) => {
+    try {
+      const response = await axios.delete(`${HISTORY_API}/${id}`, {
+        headers: { authorization: encodedToken },
+      });
+
+      const { history } = response.data;
+
+      if (response.status === 200) {
+        videosOperationsDispatcher({
+          type: "MANAGE_HISTORY",
+          payload: history,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const manageDeleteHistoryAll = async (id) => {
+    try {
+      const response = await axios.delete(`${HISTORY_API}/all`, {
+        headers: { authorization: encodedToken },
+      });
+
+      const { history } = response.data;
+
+      if (response.status === 200) {
+        videosOperationsDispatcher({
+          type: "MANAGE_HISTORY",
+          payload: history,
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <videosOperationsContext.Provider
       value={{
@@ -88,6 +126,8 @@ const VideosOperationsProvider = ({ children }) => {
         videosOperationsDispatcher,
         manageVideoLike,
         manageWatchLater,
+        manageDeleteHistory,
+        manageDeleteHistoryAll,
       }}
     >
       {children}

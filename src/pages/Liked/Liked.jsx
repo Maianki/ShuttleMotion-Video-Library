@@ -19,7 +19,7 @@ export function Liked() {
 
       <main className={styles.main}>
         <div className={styles.topBar}>
-          {likedVideos.length > 0 ? (
+          {likedVideos.length ? (
             <h2 className='text-center text-highlight'>
               {likedVideos.length} liked videos
             </h2>

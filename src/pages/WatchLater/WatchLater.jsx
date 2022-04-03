@@ -19,7 +19,7 @@ export function WatchLater() {
 
       <main className={styles.main}>
         <div className={styles.topBar}>
-          {watchLaterVideos.length > 0 ? (
+          {watchLaterVideos.length ? (
             <h2 className='text-center text-highlight'>
               {watchLaterVideos.length} liked videos
             </h2>

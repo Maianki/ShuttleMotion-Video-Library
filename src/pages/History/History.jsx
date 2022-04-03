@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Sidebar, VideoCard } from "components";
+import { Navbar, Sidebar, VideoCard, EmptyPlaceholder } from "components";
 import styles from "./history.module.css";
 import { useVideosOperations } from "context";
 
@@ -22,6 +22,7 @@ export function History() {
       </section>
 
       <main className={styles.main}>
+        {historyVideos.length ? "" : <EmptyPlaceholder />}
         <div className={styles.topBar}>
           {historyVideos.length > 0 ? (
             <button

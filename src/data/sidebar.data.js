@@ -1,13 +1,7 @@
-import { BsStopwatch, BsStopwatchFill } from "react-icons/bs";
+import { BsStopwatch } from "react-icons/bs";
 import { MdPlaylistPlay } from "react-icons/md";
 import { v4 as uuid } from "uuid";
-import {
-  AiFillHome,
-  AiFillLike,
-  AiOutlineLike,
-  AiOutlineHome,
-  AiOutlineHistory,
-} from "react-icons/ai";
+import { AiOutlineLike, AiOutlineHome, AiOutlineHistory } from "react-icons/ai";
 
 export const sideNavLinks = [
   {

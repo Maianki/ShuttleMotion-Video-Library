@@ -7,5 +7,5 @@ export { Label } from "./Form/Label/Label";
 export { VideoCardHorizontal, PlaylistsCard } from "./Card";
 export { RequireAuth } from "./RequireAuth/RequireAuth";
 export { RestrictAuth } from "./RequireAuth/RestrictAuth";
-
+export { EmptyPlaceholder } from "./EmptyPlaceholder/EmptyPlaceholder";
 

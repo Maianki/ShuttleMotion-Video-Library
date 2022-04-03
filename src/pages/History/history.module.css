@@ -1,0 +1,37 @@
+.container {
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    grid-template-areas: "navbar navbar"
+        "sidebar main";
+}
+
+.navbar {
+    grid-area: navbar;
+
+}
+
+.sidebarNav {
+    grid-area: sidebar;
+}
+
+.topBar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0rem 6rem .8rem 7rem;
+}
+
+.main {
+    grid-area: main;
+}
+
+.historyVideos {
+    height: calc(100vh - 8rem);
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    justify-items: center;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    gap: 1rem;
+}

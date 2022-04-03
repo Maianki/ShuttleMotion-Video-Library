@@ -1,6 +1,7 @@
 .cardVideo{
     padding: 0 0 1rem;
     min-width: 32rem;
+    max-height: 28rem;
     border-radius: 0;
     background-color: transparent;
     color: var(--WHITE-COLOR);
@@ -27,3 +28,26 @@
     padding-left:4.1rem;
 }
 
+.deleteIcon {
+    cursor: pointer;
+    font-size: 3rem;
+    text-align: center;
+    color: var(--ROSE-RED);
+    background-color: var(--TRAFFIC-WHITE-COLOR);
+    width: 3.8rem;
+    height: 3.8rem;
+    border-radius: 50%;
+    position: absolute;
+    right: 8px;
+    opacity: .9;
+    top: 5px;
+}
+
+.deleteIcon:hover {
+    opacity: 1;
+}
+
+.deleteIcon:active {
+    color: var(--TRAFFIC-WHITE-COLOR);
+    background-color: var(--ROSE-RED);
+}

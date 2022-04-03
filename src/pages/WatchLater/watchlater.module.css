@@ -2,36 +2,32 @@
     display: grid;
     grid-template-columns: 24rem 1fr;
     grid-template-areas: "navbar navbar"
-    "sidebar main";
+        "sidebar main";
 }
 
-.navbar{
+.navbar {
     grid-area: navbar;
-   
+
 }
 
-.sidebarNav{
+.sidebarNav {
     grid-area: sidebar;
 }
 
-.main{
-    grid-area:main;
+.main {
+    grid-area: main;
     height: calc(100vh - 8rem);
     overflow: auto;
 }
 
-.categoryChips{
-    width:100%;
-    padding:1.8rem 8rem 1.6rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap:2rem;
-}
-
-.videosThumbnail{
+.watchlaterVideos {
+    grid-area: main;
+    height: calc(100vh - 8rem);
+    overflow: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     justify-items: center;
     padding-left: 5rem;
     padding-right: 5rem;
+    gap: 1rem;
 }

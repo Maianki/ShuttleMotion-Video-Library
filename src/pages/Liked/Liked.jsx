@@ -1,5 +1,36 @@
 import React from "react";
+import { Navbar, Sidebar, VideoCard } from "components";
+import styles from "./liked.module.css";
+import { useVideosOperations } from "context";
 
 export function Liked() {
-  return <div>Liked</div>;
+  const {
+    videosOperations: { likedVideos },
+  } = useVideosOperations();
+
+  return (
+    <div className={styles.container}>
+      <section className={styles.navbar}>
+        <Navbar />
+      </section>
+      <section className={styles.sidebar}>
+        <Sidebar />
+      </section>
+
+      <main className={styles.main}>
+        <div className={styles.topBar}>
+          {likedVideos.length ? (
+            <h2 className='text-center text-highlight'>
+              {likedVideos.length} liked videos
+            </h2>
+          ) : null}
+        </div>
+        <section className={styles.likedVideos}>
+          {likedVideos.map((video) => {
+            return <VideoCard video={video} key={video._id} />;
+          })}
+        </section>
+      </main>
+    </div>
+  );
 }

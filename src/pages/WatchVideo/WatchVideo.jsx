@@ -1,12 +1,14 @@
 import { Navbar, Sidebar, VideoCard } from "components";
-import { useVideosAndCategories } from "context";
-import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useVideosAndCategories, useVideosOperations, useAuth } from "context";
+import { useParams } from "react-router-dom";
 import styles from "./watchvideo.module.css";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BsStopwatch, BsStopwatchFill } from "react-icons/bs";
 import { getSimilarVideos } from "utils";
+import { useEffect } from "react";
+import axios from "axios";
+import { HISTORY_API } from "utils/APIEndPoints";
 
 export function WatchVideo() {
   const { videoID } = useParams();
@@ -15,14 +17,61 @@ export function WatchVideo() {
   } = useVideosAndCategories();
 
   const {
+    manageVideoLike,
+    manageWatchLater,
+    videosOperationsDispatcher,
+    videosOperations: { likedVideos, watchLaterVideos },
+  } = useVideosOperations();
+
+  const video = videos.find((video) => videoID === video.videoID);
+  const {
     title,
     description,
     creator: { name: creatorName, profile: creatorProfile },
     views,
     category,
-  } = videos.find((video) => videoID === video.videoID);
+  } = video;
 
   const similarVideos = getSimilarVideos(category, videos, videoID);
+
+  const btnLikeHandler = () => {
+    manageVideoLike(video);
+  };
+
+  const btnWatchLaterHandler = () => {
+    manageWatchLater(video);
+  };
+  const {
+    auth: { encodedToken },
+  } = useAuth();
+  console.log(encodedToken);
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.post(
+          HISTORY_API,
+          {
+            video,
+          },
+          {
+            headers: { authorization: encodedToken },
+          }
+        );
+
+        const { history } = response.data;
+        console.log(history);
+        if (response.status === 201) {
+          videosOperationsDispatcher({
+            type: "MANAGE_HISTORY",
+            payload: history,
+          });
+        }
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [encodedToken, video, videosOperationsDispatcher]);
 
   return (
     <div className={styles.container}>
@@ -39,7 +88,7 @@ export function WatchVideo() {
             <iframe
               src={`https://www.youtube.com/embed/${videoID}?rel=0`}
               title='YouTube video player'
-              frameBorder='1'
+              frameBorder='0'
             ></iframe>
           </div>
 
@@ -55,15 +104,36 @@ export function WatchVideo() {
               <span className={`text-md  ${styles.videoViewsCount}`}>
                 | {views} views
               </span>
-              <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
-                <AiOutlineLike /> <span className='text-md pd-ht-1'>Like</span>
+              <button
+                className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                onClick={btnLikeHandler}
+              >
+                {likedVideos.find(({ _id }) => _id === video._id) ? (
+                  <>
+                    <AiFillLike />
+                    <span className='text-md pd-ht-1'>Liked</span>
+                  </>
+                ) : (
+                  <>
+                    <AiOutlineLike />
+                    <span className='text-md pd-ht-1'>Like</span>
+                  </>
+                )}
               </button>
               <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
                 <RiPlayListAddFill />
                 <span className='text-md pd-ht-1'>Save</span>
               </button>
-              <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
-                <BsStopwatch />
+              <button
+                className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                onClick={btnWatchLaterHandler}
+              >
+                {watchLaterVideos.find(({ _id }) => _id === video._id) ? (
+                  <BsStopwatchFill />
+                ) : (
+                  <BsStopwatch />
+                )}
+
                 <span className='text-md pd-ht-1'>Watch Later</span>
               </button>
             </div>
@@ -76,11 +146,7 @@ export function WatchVideo() {
         <section className='videoRecommendation'>
           <h2 className={styles.recommendationHeading}>Similar videos</h2>
           {similarVideos.map((video) => {
-            return (
-              <Link key={video._id} to={`/watch/${video.videoID}`}>
-                <VideoCard video={video} />
-              </Link>
-            );
+            return <VideoCard key={video._id} video={video} />;
           })}
         </section>
       </main>

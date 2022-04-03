@@ -7,3 +7,5 @@ export {
   useVideosOperations,
   VideosOperationsProvider,
 } from "./videos-operations-context";
+
+export { usePlaylists, PlaylistsProvider } from "./playlists-context";

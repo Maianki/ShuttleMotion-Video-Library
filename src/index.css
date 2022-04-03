@@ -3,7 +3,8 @@
 
 :root{
   --PRIMARY-COLOR:#4b4453;
-  --PRIMARY-COLOR-DARK:#3c3642;
+  --PRIMARY-COLOR-DARK-30:#36313b;
+  --PRIMARY-COLOR-DARK-20:#3c3642;
   --SECONDARY-COLOR:#004052;
   --SCROLLBAR-BG-COLOR:#181818;
   --WHITE-COLOR:#FFF;
@@ -11,7 +12,7 @@
   --TEXT-HIGHLIGHT-COLOR:#767971;
   --CHIPS-TEXT-COLOR:#c4ceb2;
   --ACCENT-COLOR:#767971;
-  --GRAY-COLOR:#d8cccc;
+  --GRAY-COLOR:#e4dbdb;
   --ROSE-RED: #ff5964;
   --CARD-SHADOW-1:rgba(0,0,0,0.12);
   --CARD-SHADOW-2:rgba(0,0,0,0.24);
@@ -32,7 +33,7 @@ html{
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--SCROLLBAR-BG-COLOR) var(--PRIMARY-COLOR-DARK);
+  scrollbar-color: var(--SCROLLBAR-BG-COLOR) var(--PRIMARY-COLOR-DARK-20);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -41,7 +42,7 @@ html{
 }
 
 *::-webkit-scrollbar-track {
-  background: var(--PRIMARY-COLOR-DARK);
+  background: var(--PRIMARY-COLOR-DARK-30);
 }
 
 *::-webkit-scrollbar-thumb {
@@ -51,7 +52,7 @@ html{
 }
 
 body{
-  background-color:var(--PRIMARY-COLOR-DARK);
+  background-color:var(--PRIMARY-COLOR-DARK-30);
 }
 .text-highlight{
   color: var(--TEXT-HIGHLIGHT-COLOR);

@@ -29,7 +29,7 @@ export function VideoListing() {
       <section className={styles.sidebarNav}>
         <Sidebar />
       </section>
-      <section className={styles.main}>
+      <main className={styles.main}>
         <div className={styles.categoryChips}>
           {categories.map(({ _id, categoryName }) => (
             <Chips
@@ -45,7 +45,7 @@ export function VideoListing() {
             return <VideoCard key={video._id} video={video} />;
           })}
         </section>
-      </section>
+      </main>
     </div>
   );
 }

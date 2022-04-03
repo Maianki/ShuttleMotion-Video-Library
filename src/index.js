@@ -8,6 +8,7 @@ import {
   VideosAndCategoryProvider,
   AuthProvider,
   VideosOperationsProvider,
+  PlaylistsProvider,
 } from "context";
 
 // Call make Server
@@ -19,7 +20,9 @@ ReactDOM.render(
       <AuthProvider>
         <VideosAndCategoryProvider>
           <VideosOperationsProvider>
-            <App />
+            <PlaylistsProvider>
+              <App />
+            </PlaylistsProvider>
           </VideosOperationsProvider>
         </VideosAndCategoryProvider>
       </AuthProvider>

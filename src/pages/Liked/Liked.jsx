@@ -20,9 +20,9 @@ export function Liked() {
       <main className={styles.main}>
         <div className={styles.topBar}>
           {likedVideos.length ? (
-            <h2 className='text-center text-highlight'>
+            <h3 className='text-center text-highlight'>
               {likedVideos.length} liked videos
-            </h2>
+            </h3>
           ) : null}
         </div>
         <section className={styles.likedVideos}>

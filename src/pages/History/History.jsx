@@ -25,7 +25,7 @@ export function History() {
         <div className={styles.topBar}>
           {historyVideos.length > 0 ? (
             <button
-              className='btn btn-danger btn-secondary'
+              className={`btn btn-danger btn-secondary ${styles.btnDeleteHistory}`}
               onClick={btnDeleteHandler}
             >
               clear all history

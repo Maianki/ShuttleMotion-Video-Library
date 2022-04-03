@@ -1,5 +1,5 @@
 .sidebar{
-    background-color: var(--PRIMARY-COLOR-DARK);
+    background-color: var(--PRIMARY-COLOR-DARK-20);
     max-width:24rem;
     height: calc(100vh - 8rem);
     color: var(--WHITE-COLOR);
@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     border-right:1px solid var(--CARD-SHADOW-1);
-    padding-top:3.6rem;
+    padding-top:0rem;
 }
 
 .sidebarIcon{
@@ -41,7 +41,7 @@ ol{
 }
 
 .isNavLinkInactive {
-    border-left: 6px solid var(--PRIMARY-COLOR-DARK);
+    border-left: 6px solid var(--PRIMARY-COLOR-DARK-20);
     padding: 1rem 1.2rem;
 }
 a{

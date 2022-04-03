@@ -18,20 +18,25 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding: 0rem 6rem .8rem 7rem;
+    max-height: 6.5rem;
+    padding:1.5rem 6.7rem 1.5rem;
 }
+    
 
 .main {
     grid-area: main;
+    height: calc(100vh - 8rem);
+    overflow: auto;
 }
 
 .historyVideos {
-    height: calc(100vh - 8rem);
-    overflow: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
     justify-items: center;
-    padding-left: 5rem;
-    padding-right: 5rem;
-    gap: 1rem;
+    gap:2px;
+    padding: 1rem 3.2rem;
+    }
+    
+    .btnDeleteHistory {
+        margin: 0;
 }

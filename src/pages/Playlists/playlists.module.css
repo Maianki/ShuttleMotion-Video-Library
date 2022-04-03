@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    grid-template-areas: "navbar navbar"
+        "sidebar main";
+}
+
+.navbar {
+    grid-area: navbar;
+
+}
+
+.sidebarNav {
+    grid-area: sidebar;
+}
+
+.main {
+    grid-area: main;
+    height: calc(100vh - 8rem);
+    overflow: auto;
+}
+
+.playlists {
+    grid-area: main;
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+}

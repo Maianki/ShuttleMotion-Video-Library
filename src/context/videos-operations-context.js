@@ -7,7 +7,7 @@ import axios from "axios";
 import { LIKES_API, WATCHLATER_API, HISTORY_API } from "utils/APIEndPoints";
 import { useAuth } from "./auth-context";
 
-const videosOperationsContext = createContext(null);
+const VideosOperationsContext = createContext(null);
 
 const VideosOperationsProvider = ({ children }) => {
   const {
@@ -120,7 +120,7 @@ const VideosOperationsProvider = ({ children }) => {
   };
 
   return (
-    <videosOperationsContext.Provider
+    <VideosOperationsContext.Provider
       value={{
         videosOperations,
         videosOperationsDispatcher,
@@ -131,9 +131,9 @@ const VideosOperationsProvider = ({ children }) => {
       }}
     >
       {children}
-    </videosOperationsContext.Provider>
+    </VideosOperationsContext.Provider>
   );
 };
 
-const useVideosOperations = () => useContext(videosOperationsContext);
+const useVideosOperations = () => useContext(VideosOperationsContext);
 export { VideosOperationsProvider, useVideosOperations };

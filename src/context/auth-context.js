@@ -4,7 +4,7 @@ import { authReducer, authInitialState } from "reducers/auth-reducer";
 import { LOGIN_API, SIGNUP_API } from "utils/APIEndPoints";
 import { useNavigate } from "react-router-dom";
 
-const authContext = createContext(null);
+const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatcher] = useReducer(authReducer, authInitialState);
@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{
         auth,
         authDispatcher,
@@ -88,10 +88,10 @@ const AuthProvider = ({ children }) => {
       }}
     >
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
-const useAuth = () => useContext(authContext);
+const useAuth = () => useContext(AuthContext);
 
 export { useAuth, AuthProvider };

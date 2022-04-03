@@ -47,7 +47,11 @@ export function VideoCard({
         </Link>
         <div className={`flex-row card-footer ${styles.videoCardFooter}`}>
           <h6>{creatorName}</h6>
-          <p className='text-xs text-highlight pd-ht-1'>{views} views</p>
+          <p
+            className={`text-xs text-highlight pd-ht-1 ${styles.videoViewsCount}`}
+          >
+            {views} views
+          </p>
 
           {!!(pathname === "/history") && (
             <span

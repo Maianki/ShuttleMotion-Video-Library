@@ -20,9 +20,9 @@ export function WatchLater() {
       <main className={styles.main}>
         <div className={styles.topBar}>
           {watchLaterVideos.length ? (
-            <h2 className='text-center text-highlight'>
-              {watchLaterVideos.length} liked videos
-            </h2>
+            <h3 className='text-center text-highlight'>
+              {watchLaterVideos.length} video in watch later.
+            </h3>
           ) : null}
         </div>
         <section className={styles.watchlaterVideos}>

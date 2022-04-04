@@ -1,3 +1,17 @@
 .playlistsCard {
-    max-height: 28rem;
+background-color: var(--PRIMARY-COLOR);
+}
+.playlistOverlay {
+    height: 13rem;
+    bottom: 7.4rem;
+    pointer-events: none;
+}
+
+.playlistsCardHeader {
+    padding: 0;
+}
+
+.playlistCardImg {
+    object-fit: contain;
+    object-position: top left;
 }

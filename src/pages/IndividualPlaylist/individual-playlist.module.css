@@ -21,20 +21,22 @@
     max-height: 6.5rem;
     padding: 1.5rem 6.7rem 1.5rem;
 }
+
+
 .main {
     grid-area: main;
     height: calc(100vh - 8rem);
     overflow: auto;
 }
 
-.playlists {
+.historyVideos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
     justify-items: center;
     gap: 2px;
     padding: 1rem 3.2rem;
-    }
+}
 
-    .btnDeleteAllPlaylists {
-        margin: 0;
-    }
+.btnDeletePlaylist {
+    margin: 0;
+}

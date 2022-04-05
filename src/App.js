@@ -8,8 +8,10 @@ import {
   History,
   Liked,
   WatchLater,
-  Playlist,
+  Playlists,
   WatchVideo,
+  IndividualPlaylist,
+  PageNotFound,
 } from "pages";
 import { RequireAuth, RestrictAuth } from "components";
 
@@ -24,12 +26,17 @@ function App() {
         </Route>
         <Route element={<RequireAuth />}>
           <Route path='/history' element={<History />}></Route>
-          <Route path='/playlist' element={<Playlist />}></Route>
+          <Route path='/playlist' element={<Playlists />}></Route>
+          <Route
+            path='/playlist/:playlistID'
+            element={<IndividualPlaylist />}
+          ></Route>
           <Route path='/liked' element={<Liked />}></Route>
           <Route path='/watch-later' element={<WatchLater />}></Route>
         </Route>
         <Route path='/watch/:videoID' element={<WatchVideo />}></Route>
         <Route path='/mockman' element={<Mockman />}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
       </Routes>
     </div>
   );

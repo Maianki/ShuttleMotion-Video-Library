@@ -22,7 +22,9 @@
 
 .categoryChips{
     width:100%;
-    padding:1.8rem 8rem 1.6rem;
+    min-height: 6.2rem;
+    padding:1.8rem 7rem 1.7rem;
+    border-bottom: 1px solid var(--CARD-SHADOW-1);
     display: flex;
     flex-wrap: wrap;
     gap:2rem;
@@ -32,6 +34,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
     justify-items: center;
-    padding-left: 5rem;
-    padding-right: 5rem;
+    gap:2px;
+    padding: 1rem 3.2rem;
 }
+    

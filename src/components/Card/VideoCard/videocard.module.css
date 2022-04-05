@@ -26,6 +26,7 @@
 .videoCardFooter{
     align-items: center;
     padding-left:4.1rem;
+    color: var(--GRAY-COLOR);
 }
 
 .deleteIcon {
@@ -50,4 +51,48 @@
 .deleteIcon:active {
     color: var(--TRAFFIC-WHITE-COLOR);
     background-color: var(--ROSE-RED);
+}
+
+.videoViewsCount {
+    color: var(--GRAY-COLOR);
+}
+.videoCardMenu {
+    position: absolute;
+    bottom: 68px;
+    right: 0;
+}
+
+.videoCardMenu:active {
+    color: var(--PRIMARY-COLOR);
+}
+
+.videoOptions {
+    position: absolute;
+    width: 16rem;
+    right: 0;
+    bottom: -22px;
+    background-color: var(--PRIMARY-COLOR);
+    color: var(--SCROLLBAR-BG-COLOR);
+    padding: 0;
+    border: thin solid var(--ACCENT-COLOR);
+    border-radius: 0;
+}
+
+.videoOptionsItem {
+    font-size: 1.3rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    color: var(--TRAFFIC-WHITE-COLOR);
+}
+
+.videoOptionsItem:nth-of-type(1) {
+    border-bottom: thin solid var(--ACCENT-COLOR);
+}
+
+.videoOptionsItem:hover {
+    background-color: var(--LIGHT-GRAY-COLOR);
+    color: var(--TRAFFIC-WHITE-COLOR);
 }

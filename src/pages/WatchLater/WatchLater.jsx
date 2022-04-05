@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Sidebar, VideoCard } from "components";
+import { Navbar, Sidebar, VideoCard, EmptyPlaceholder } from "components";
 import styles from "./watchlater.module.css";
 import { useVideosOperations } from "context";
 
@@ -18,11 +18,12 @@ export function WatchLater() {
       </section>
 
       <main className={styles.main}>
+        {watchLaterVideos.length ? "" : <EmptyPlaceholder />}
         <div className={styles.topBar}>
           {watchLaterVideos.length ? (
-            <h2 className='text-center text-highlight'>
-              {watchLaterVideos.length} liked videos
-            </h2>
+            <h3 className='text-center text-highlight'>
+              {watchLaterVideos.length} video in watch later.
+            </h3>
           ) : null}
         </div>
         <section className={styles.watchlaterVideos}>

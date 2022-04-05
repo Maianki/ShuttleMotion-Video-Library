@@ -43,6 +43,33 @@ export function BiEyeSlash(props) {
   );
 }
 
+
+export function CharmTick(props) {
+  return (
+    <svg width='1em' height='1em' viewBox='0 0 16 16' {...props}>
+      <path
+        fill='none'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.5'
+        d='m2.75 8.75l3.5 3.5l7-7.5'
+      ></path>
+    </svg>
+  );
+}
+
+export function IcSharpPlus(props) {
+  return (
+    <svg width='1em' height='1em' viewBox='0 0 24 24' {...props}>
+      <path
+        fill='currentColor'
+        d='M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z'
+      ></path>
+    </svg>
+  );
+}
+
 export function PhGithubLogoDuotone(props) {
   return (
     <svg width='1em' height='1em' viewBox='0 0 256 256' {...props}>
@@ -90,7 +117,6 @@ export function PhLinkedinLogoDuotone(props) {
   );
 }
 
-
 export function TablerPlaylistX(props) {
   return (
     <svg width='1em' height='1em' viewBox='0 0 24 24' {...props}>
@@ -105,3 +131,4 @@ export function TablerPlaylistX(props) {
     </svg>
   );
 }
+

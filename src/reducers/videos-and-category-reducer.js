@@ -13,6 +13,7 @@ export const videosAndCategoryReducer = (state, action) => {
       return { ...state, categories: payload };
     case "FILTER_VIDEOS_BY_CATEGORY":
       return { ...state, filterByCategory: payload };
+
     default:
       throw Error("Unknown action.");
   }

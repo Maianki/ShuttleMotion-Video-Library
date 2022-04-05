@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Sidebar, VideoCard } from "components";
+import { Navbar, Sidebar, VideoCard, EmptyPlaceholder } from "components";
 import styles from "./liked.module.css";
 import { useVideosOperations } from "context";
 
@@ -18,11 +18,12 @@ export function Liked() {
       </section>
 
       <main className={styles.main}>
+        {likedVideos.length ? "" : <EmptyPlaceholder />}
         <div className={styles.topBar}>
           {likedVideos.length ? (
-            <h2 className='text-center text-highlight'>
+            <h3 className='text-center text-highlight'>
               {likedVideos.length} liked videos
-            </h2>
+            </h3>
           ) : null}
         </div>
         <section className={styles.likedVideos}>

@@ -17,6 +17,9 @@ export const videosOperationsReducer = (state, action) => {
     case "MANAGE_HISTORY":
       return { ...state, historyVideos: payload };
 
+    case "RESET_VIDEO_OPERATIONS_REDUCER":
+      return videosOperationsInitialState;
+
     default:
       throw Error("Unknown action.");
   }

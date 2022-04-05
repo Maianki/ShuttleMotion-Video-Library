@@ -1,0 +1,39 @@
+.playlistModal {
+    min-width: 20rem;
+    position: fixed;
+    z-index: 9;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    align-items: center;
+    background-color: var(--PRIMARY-COLOR);
+    color: var(--GRAY-COLOR)
+}
+
+.bodyOverlyaActive {
+    opacity: .5;
+    background: var(--BLACK-COLOR);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 5;
+}
+
+.playlistsName {
+    width: 100%;
+}
+
+.playlistModalHeading {
+    color: var(--GRAY-COLOR);
+}
+
+.btnCreatePlaylist {
+    margin-left: 0;
+}
+
+.playlistDescription {
+    height: 6rem;
+}

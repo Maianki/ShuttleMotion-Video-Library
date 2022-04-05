@@ -1,7 +1,6 @@
 .navbar{
-    background-color: var(--PRIMARY-COLOR-DARK);
+    background-color: var(--PRIMARY-COLOR-DARK-20);
     padding:0 3rem;
-    border-bottom:1px solid var(--CARD-SHADOW-1);
 }
 
 .flexRowEnd{

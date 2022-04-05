@@ -61,7 +61,6 @@ const PlaylistsProvider = ({ children }) => {
         const playlistId = playlists[playlists.length - 1]._id;
         addVideoToPlaylist(playlistId, video);
       }
-      console.log(playlists);
     } catch (err) {
       console.log(err);
     }

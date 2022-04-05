@@ -3,12 +3,11 @@ import styles from "./playlists-card.module.css";
 import { RiPlayList2Fill } from "react-icons/ri";
 import { FaFileVideo } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { emptyBox, playlist } from "assets";
+import { playlist } from "assets";
 
 export function PlaylistsCard({
   playlist: { _id: playlistId, title, description, videos },
 }) {
-  console.log(videos);
   return (
     <div className={`card align-items-center ${styles.playlistsCard}`}>
       <div className={`card card-header ${styles.playlistsCardHeader}`}>

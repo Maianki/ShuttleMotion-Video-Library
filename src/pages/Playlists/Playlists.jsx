@@ -8,8 +8,6 @@ export function Playlists() {
     playlists: { playlists },
   } = usePlaylists();
 
-  const btnDeleteHandler = () => {};
-
   return (
     <div className={styles.container}>
       <section className={styles.navbar}>

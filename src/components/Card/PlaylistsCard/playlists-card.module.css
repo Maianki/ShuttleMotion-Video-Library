@@ -4,6 +4,7 @@ background-color: var(--PRIMARY-COLOR);
 .playlistOverlay {
     height: 13rem;
     bottom: 7.4rem;
+    padding: 1rem;
     pointer-events: none;
 }
 

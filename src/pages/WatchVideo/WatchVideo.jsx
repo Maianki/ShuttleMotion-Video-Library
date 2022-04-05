@@ -1,4 +1,4 @@
-import { Navbar, Sidebar, VideoCard } from "components";
+import { Navbar, Sidebar, VideoCard, PlaylistModal } from "components";
 import { useVideosAndCategories, useVideosOperations, useAuth } from "context";
 import { useParams } from "react-router-dom";
 import styles from "./watchvideo.module.css";
@@ -6,7 +6,7 @@ import { RiPlayListAddFill } from "react-icons/ri";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BsStopwatch, BsStopwatchFill } from "react-icons/bs";
 import { getSimilarVideos } from "utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { HISTORY_API } from "utils/APIEndPoints";
 
@@ -22,6 +22,12 @@ export function WatchVideo() {
     videosOperationsDispatcher,
     videosOperations: { likedVideos, watchLaterVideos },
   } = useVideosOperations();
+
+  const [showModal, setShowModal] = useState(false);
+
+  const btnPlaylistModalHandler = () => {
+    setShowModal((prev) => !prev);
+  };
 
   const video = videos.find((video) => videoID === video.videoID);
   const {
@@ -120,7 +126,10 @@ export function WatchVideo() {
                   </>
                 )}
               </button>
-              <button className={`btn btn-primary ${styles.btnVideoPlayer}`}>
+              <button
+                className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                onClick={btnPlaylistModalHandler}
+              >
                 <RiPlayListAddFill />
                 <span className='text-md pd-ht-1'>Save</span>
               </button>
@@ -141,6 +150,12 @@ export function WatchVideo() {
             <p className={styles.videoDescription}>{description}</p>
           </section>
         </section>
+        {showModal && (
+          <PlaylistModal
+            btnModalHandler={btnPlaylistModalHandler}
+            video={video}
+          />
+        )}
 
         {/*Recommendition section*/}
         <section className='videoRecommendation'>

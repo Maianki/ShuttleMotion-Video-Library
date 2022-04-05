@@ -46,12 +46,6 @@ const AuthProvider = ({ children }) => {
     });
   }, []);
 
-  const handleSignOut = () => {
-    authDispatcher({ type: "LOGGED_OUT" });
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
-
   const handleSignIn = async (userInfo) => {
     const { email, password } = userInfo;
     try {
@@ -84,7 +78,6 @@ const AuthProvider = ({ children }) => {
         authDispatcher,
         handleSignIn,
         handleSignup,
-        handleSignOut,
       }}
     >
       {children}

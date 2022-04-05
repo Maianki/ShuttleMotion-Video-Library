@@ -11,6 +11,7 @@ import {
   Playlists,
   WatchVideo,
   IndividualPlaylist,
+  PageNotFound,
 } from "pages";
 import { RequireAuth, RestrictAuth } from "components";
 
@@ -35,6 +36,7 @@ function App() {
         </Route>
         <Route path='/watch/:videoID' element={<WatchVideo />}></Route>
         <Route path='/mockman' element={<Mockman />}></Route>
+        <Route path='*' element={<PageNotFound />}></Route>
       </Routes>
     </div>
   );

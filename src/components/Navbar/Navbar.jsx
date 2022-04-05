@@ -2,19 +2,27 @@ import React from "react";
 import styles from "./navbar.module.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { AiFillHome } from "react-icons/ai";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logo, BiBoxArrowInRight, BiBoxArrowInLeft } from "assets/index";
-import { useAuth } from "context";
+import { useAuth, usePlaylists, useVideosOperations } from "context";
 
 export function Navbar() {
   const {
     auth: { isAuthenticated, encodedToken },
-    handleSignOut,
+    authDispatcher,
   } = useAuth();
 
+  const navigate = useNavigate();
+  const { playlistsDispatcher } = usePlaylists();
+  const { videosOperationsDispatcher } = useVideosOperations();
+
   const { pathname } = useLocation();
-  const clikcHandler = () => {
-    handleSignOut();
+  const handleSignOut = () => {
+    authDispatcher({ type: "LOGGED_OUT" });
+    playlistsDispatcher({ type: "RESET_PLAYLISTS" });
+    videosOperationsDispatcher({ type: "RESET_VIDEO_OPERATIONS_REDUCER" });
+    localStorage.removeItem("token");
+    navigate("/login");
   };
 
   return (
@@ -43,7 +51,7 @@ export function Navbar() {
           {isAuthenticated && encodedToken ? (
             <button
               className={`btn flex-row ${styles.loginBtn}`}
-              onClick={clikcHandler}
+              onClick={handleSignOut}
             >
               <BiBoxArrowInLeft />
               <span className='md-ht-1 '>Logout</span>

@@ -4,26 +4,38 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { Label } from "components";
 import { usePlaylists } from "context";
 
-export function PlaylistModal({ btnModalHandler }) {
+export function PlaylistModal({ btnModalHandler, video }) {
   const [playlistDetail, setPlaylistDetail] = useState({
     title: "",
     description: "",
   });
+
   const {
     managePlaylist,
+    addVideoToPlaylist,
+    deleteVideoFromPlaylist,
     playlists: { playlists },
   } = usePlaylists();
-  console.log(playlists);
 
-  const onChangeHandler = (event) => {
+  const { _id: currVideoId } = video;
+  const playlistDetailChangeHandler = (event) => {
     const { name, value } = event.target;
     setPlaylistDetail((prev) => ({ ...prev, [name]: value }));
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    managePlaylist(playlistDetail);
+    managePlaylist(playlistDetail,video);
     btnModalHandler();
+  };
+
+  const playlistChangeHandler = (event, playlistId) => {
+    const { checked } = event.target;
+    if (checked) {
+      addVideoToPlaylist(playlistId, video);
+    } else {
+      deleteVideoFromPlaylist(playlistId, video._id);
+    }
   };
 
   return (
@@ -46,11 +58,18 @@ export function PlaylistModal({ btnModalHandler }) {
         </div>
 
         <div className={`modal-body flex-column ${styles.playlistsName}`}>
-          {playlists.map(({ _id, title }) => {
+          {playlists.map(({ _id, title, videos }) => {
             return (
               <div key={_id} className='form-check'>
-                <input type='checkbox' value='demo' id='examplecheck' />
-                <label className='form-label-inline' htmlFor='examplecheck'>
+                <input
+                  type='checkbox'
+                  id={title}
+                  checked={videos.some(
+                    ({ _id: videoId }) => currVideoId === videoId
+                  )}
+                  onChange={(e) => playlistChangeHandler(e, _id)}
+                />
+                <label className='form-label-inline' htmlFor={title}>
                   {title}
                 </label>
               </div>
@@ -69,7 +88,7 @@ export function PlaylistModal({ btnModalHandler }) {
                 name='title'
                 value={playlistDetail.title}
                 placeholder='Enter playlist title'
-                onChange={onChangeHandler}
+                onChange={playlistDetailChangeHandler}
               />
               <div className='form-set'>
                 <Label labelFor='description' labelName='Description' />
@@ -80,7 +99,7 @@ export function PlaylistModal({ btnModalHandler }) {
                   cols='25'
                   placeholder='Enter description'
                   value={playlistDetail.description}
-                  onChange={onChangeHandler}
+                  onChange={playlistDetailChangeHandler}
                 ></textarea>
               </div>
 

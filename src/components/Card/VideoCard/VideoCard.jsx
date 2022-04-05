@@ -5,10 +5,11 @@ import { CharmTick, IcSharpPlus } from "assets";
 import { MdDelete } from "react-icons/md";
 import { useLocation, Link } from "react-router-dom";
 import { getTrimVideoTitle } from "utils";
-import { useVideosOperations } from "context";
+import { useVideosOperations, usePlaylists } from "context";
 import { PlaylistModal } from "components";
 
 export function VideoCard({
+  playlist = "",
   video,
   video: {
     _id: id,
@@ -23,13 +24,19 @@ export function VideoCard({
   const { pathname } = useLocation();
   const trimmedTitle = getTrimVideoTitle(title);
 
+  const { deleteVideoFromPlaylist } = usePlaylists();
+
   const {
     manageWatchLater,
     videosOperations: { watchLaterVideos },
   } = useVideosOperations();
 
-  const btnDeleteHandler = () => {
+  const btnHistoryDeleteHandler = () => {
     manageDeleteHistory(id);
+  };
+
+  const btnPlaylistVideoDeleteHandler = () => {
+    deleteVideoFromPlaylist(playlist._id, id);
   };
 
   const btnWatchLaterHandler = () => {
@@ -54,7 +61,7 @@ export function VideoCard({
             className='responsive-img'
             src={thumbnail}
             loading='lazy'
-            alt=''
+            alt={title}
           />
 
           <div className={`card-body flex-row ${styles.videoCardBody}`}>
@@ -107,18 +114,33 @@ export function VideoCard({
             </ol>
           )}
 
-          {!!(pathname === "/history") && (
+          {pathname === "/history" && (
             <span
               className={styles.deleteIcon}
               role='button'
-              onClick={btnDeleteHandler}
+              onClick={btnHistoryDeleteHandler}
+            >
+              <MdDelete />
+            </span>
+          )}
+
+          {pathname === `/playlist/${playlist._id}` && (
+            <span
+              className={styles.deleteIcon}
+              role='button'
+              onClick={btnPlaylistVideoDeleteHandler}
             >
               <MdDelete />
             </span>
           )}
         </div>
       </div>
-      {showModal && <PlaylistModal btnModalHandler={btnPlaylistModalHandler} />}
+      {showModal && (
+        <PlaylistModal
+          btnModalHandler={btnPlaylistModalHandler}
+          video={video}
+        />
+      )}
     </>
   );
 }

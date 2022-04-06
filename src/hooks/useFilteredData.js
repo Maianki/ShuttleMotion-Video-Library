@@ -1,4 +1,4 @@
-import { useVideosAndCategories } from "context/videos-and-category-context";
+import { useVideosAndCategories } from "context";
 
 /**
  * custom hook to filterData based on filter appplied by user
@@ -7,9 +7,9 @@ import { useVideosAndCategories } from "context/videos-and-category-context";
  *
  */
 
-export function useFilteredData() {
+export function useFilteredData(activeCategory) {
   const {
-    videosAndCategory: { videos, filterByCategory },
+    videosAndCategory: { videos },
   } = useVideosAndCategories();
 
   const filteredData = JSON.parse(JSON.stringify(videos));
@@ -17,10 +17,10 @@ export function useFilteredData() {
     filterByCategory === "All"
       ? videos
       : videos.filter(({ category }) => category === filterByCategory);
-   
+
   const filteredDataByCategory = getFilteredByCategory(
     filteredData,
-    filterByCategory
+    activeCategory
   );
 
   return { filteredData: filteredDataByCategory };

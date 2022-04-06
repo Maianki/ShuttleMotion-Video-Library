@@ -10,8 +10,9 @@ export function VideoListing() {
     videosAndCategoryDispatcher,
   } = useVideosAndCategories();
 
-  const { filteredData } = useFilteredData();
   const [activeCategory, setActiveCategory] = useState("All");
+  const { filteredData } = useFilteredData(activeCategory);
+
   const activeCategoryHandler = (categoryName) => {
     setActiveCategory(categoryName);
 
@@ -31,19 +32,21 @@ export function VideoListing() {
       </section>
       <main className={styles.main}>
         <div className={styles.categoryChips}>
-          {categories.map(({ _id, categoryName }) => (
-            <Chips
-              key={_id}
-              categoryName={categoryName}
-              clickHandler={activeCategoryHandler}
-              activeCategory={activeCategory}
-            />
-          ))}
+          {categories &&
+            categories.map(({ _id, categoryName }) => (
+              <Chips
+                key={_id}
+                categoryName={categoryName}
+                clickHandler={activeCategoryHandler}
+                activeCategory={activeCategory}
+              />
+            ))}
         </div>
         <section className={styles.videosThumbnail}>
-          {filteredData.map((video) => {
-            return <VideoCard key={video._id} video={video} />;
-          })}
+          {filteredData &&
+            filteredData.map((video) => {
+              return <VideoCard key={video._id} video={video} />;
+            })}
         </section>
       </main>
     </div>

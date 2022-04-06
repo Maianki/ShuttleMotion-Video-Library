@@ -10,4 +10,4 @@ export {
 
 export { usePlaylists, PlaylistsProvider } from "./playlists-context";
 
-export { useSnackbarContext, SnackbarProvider } from "./snackbar-context";
+export { useSnackbar, SnackbarProvider } from "./snackbar-context";

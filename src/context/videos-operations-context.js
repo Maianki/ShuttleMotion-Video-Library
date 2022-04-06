@@ -6,13 +6,12 @@ import {
 import axios from "axios";
 import { LIKES_API, WATCHLATER_API, HISTORY_API } from "utils/APIEndPoints";
 import { useAuth } from "./auth-context";
-import { useSnackbar } from "hooks";
-import { useSnackbarContext } from "./snackbar-context";
+import { useSnackbar } from "./snackbar-context";
 
 const VideosOperationsContext = createContext(null);
 
 const VideosOperationsProvider = ({ children }) => {
-  const { snackbar } = useSnackbarContext();
+  const { addSnackbar } = useSnackbar();
   const {
     auth: { encodedToken },
   } = useAuth();
@@ -49,7 +48,10 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_WATCHLATER",
           payload: watchlater,
         });
-        snackbar("Added to watch later", "snackbar-info");
+
+        response.status === 201
+          ? addSnackbar("Video added to watch later", "snackbar-info")
+          : addSnackbar("Video removed from watch later", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);
@@ -79,6 +81,9 @@ const VideosOperationsProvider = ({ children }) => {
 
       if (response.status === 201 || response.status === 200) {
         videosOperationsDispatcher({ type: "MANAGE_LIKES", payload: likes });
+        response.status === 201
+          ? addSnackbar("Video added to liked", "snackbar-info")
+          : addSnackbar("Video removed from liked", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);
@@ -98,6 +103,8 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_HISTORY",
           payload: history,
         });
+
+        addSnackbar("Video removed from history", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);
@@ -117,6 +124,7 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_HISTORY",
           payload: history,
         });
+        addSnackbar("History cleared", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);

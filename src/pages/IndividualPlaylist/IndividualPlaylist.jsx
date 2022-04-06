@@ -15,7 +15,6 @@ export function IndividualPlaylist() {
   const playlist = playlists.find(({ _id }) => _id === playlistID);
 
   const { videos: playlistVideos } = playlist;
-  console.log(playlistVideos.length);
 
   const btnDeletePlaylistHandler = () => {
     deletePlaylist(playlistID);

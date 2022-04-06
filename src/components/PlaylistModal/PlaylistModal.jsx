@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import styles from "./playlistmodal.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Label } from "components";
-import { usePlaylists } from "context";
+import { usePlaylists, useSnackbar } from "context";
 
 export function PlaylistModal({ btnModalHandler, video }) {
   const [playlistDetail, setPlaylistDetail] = useState({
     title: "",
     description: "",
   });
+
+  const { addSnackbar } = useSnackbar();
 
   const {
     managePlaylist,
@@ -25,8 +27,12 @@ export function PlaylistModal({ btnModalHandler, video }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    managePlaylist(playlistDetail,video);
-    btnModalHandler();
+    if (playlistDetail.title) {
+      managePlaylist(playlistDetail, video);
+      btnModalHandler();
+    } else {
+      addSnackbar("Playlist title cannot be empty!", "snackbar-danger");
+    }
   };
 
   const playlistChangeHandler = (event, playlistId) => {
@@ -97,7 +103,7 @@ export function PlaylistModal({ btnModalHandler, video }) {
                   name='description'
                   id='description-box'
                   cols='25'
-                  placeholder='Enter description'
+                  placeholder='(optional)'
                   value={playlistDetail.description}
                   onChange={playlistDetailChangeHandler}
                 ></textarea>

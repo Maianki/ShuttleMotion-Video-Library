@@ -6,10 +6,13 @@ import {
 import axios from "axios";
 import { LIKES_API, WATCHLATER_API, HISTORY_API } from "utils/APIEndPoints";
 import { useAuth } from "./auth-context";
+import { useSnackbar } from "hooks";
+import { useSnackbarContext } from "./snackbar-context";
 
 const VideosOperationsContext = createContext(null);
 
 const VideosOperationsProvider = ({ children }) => {
+  const { snackbar } = useSnackbarContext();
   const {
     auth: { encodedToken },
   } = useAuth();
@@ -46,6 +49,7 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_WATCHLATER",
           payload: watchlater,
         });
+        snackbar("Added to watch later", "snackbar-info");
       }
     } catch (err) {
       console.log(err);

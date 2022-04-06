@@ -3,12 +3,15 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { authReducer, authInitialState } from "reducers/auth-reducer";
 import { LOGIN_API, SIGNUP_API } from "utils/APIEndPoints";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "hooks";
+import { useSnackbarContext } from "./snackbar-context";
 
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatcher] = useReducer(authReducer, authInitialState);
   const navigate = useNavigate();
+  const { snackbar } = useSnackbarContext;
   const handleSignup = async (userInfo) => {
     const { firstName, lastName, email, password, confirmPassword } = userInfo;
     try {
@@ -63,7 +66,7 @@ const AuthProvider = ({ children }) => {
           type: "LOGGED_IN",
           payload: encodedToken,
         });
-
+        snackbar("You are logged in", "snackbar-success");
         navigate("/", { replace: true });
       }
     } catch (error) {

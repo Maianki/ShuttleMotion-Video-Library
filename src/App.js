@@ -13,11 +13,12 @@ import {
   IndividualPlaylist,
   PageNotFound,
 } from "pages";
-import { RequireAuth, RestrictAuth } from "components";
+import { RequireAuth, RestrictAuth, Snackbar } from "components";
 
 function App() {
   return (
     <div className='App'>
+      <Snackbar />
       <Routes>
         <Route path='/' element={<VideoListing />}></Route>
         <Route element={<RestrictAuth />}>

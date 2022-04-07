@@ -98,11 +98,16 @@ export function VideoCard({
                 onClick={btnWatchLaterHandler}
               >
                 {watchLaterVideos.find(({ _id }) => _id === id) ? (
-                  <CharmTick className='text-md' />
+                  <>
+                    <CharmTick className='text-md' />
+                    <span className='text-sm'>Remove from watch</span>
+                  </>
                 ) : (
-                  <IcSharpPlus className='text-md' />
+                  <>
+                    <IcSharpPlus className='text-md' />
+                    <span className='pd-ht-1 text-sm'>Add to watch later</span>
+                  </>
                 )}
-                <span className='pd-ht-1 text-sm'>Add to watch later</span>
               </li>
               <li
                 className={`${styles.videoOptionsItem} flex-row`}

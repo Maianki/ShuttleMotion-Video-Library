@@ -9,6 +9,7 @@ import {
   AuthProvider,
   VideosOperationsProvider,
   PlaylistsProvider,
+  SnackbarProvider,
 } from "context";
 
 // Call make Server
@@ -17,15 +18,17 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider>
-        <VideosAndCategoryProvider>
-          <VideosOperationsProvider>
-            <PlaylistsProvider>
-              <App />
-            </PlaylistsProvider>
-          </VideosOperationsProvider>
-        </VideosAndCategoryProvider>
-      </AuthProvider>
+      <SnackbarProvider>
+        <AuthProvider>
+          <VideosAndCategoryProvider>
+            <VideosOperationsProvider>
+              <PlaylistsProvider>
+                <App />
+              </PlaylistsProvider>
+            </VideosOperationsProvider>
+          </VideosAndCategoryProvider>
+        </AuthProvider>
+      </SnackbarProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

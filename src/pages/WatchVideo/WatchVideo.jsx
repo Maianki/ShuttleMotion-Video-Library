@@ -11,25 +11,34 @@ import axios from "axios";
 import { HISTORY_API } from "utils/APIEndPoints";
 
 export function WatchVideo() {
+  //Getting video id fro params
   const { videoID } = useParams();
+
+  //Extracting videos from videos and categories context
   const {
     videosAndCategory: { videos },
   } = useVideosAndCategories();
 
+  //Extracting manageVideosLike, manageWatchLater, videosOperationsDispatcher
+  //and videos opeartions from VideosOperations context
   const {
     manageVideoLike,
     manageWatchLater,
     videosOperationsDispatcher,
-    videosOperations: { likedVideos, watchLaterVideos },
+    videosOperations: { likedVideos, watchLaterVideos, historyVideos },
   } = useVideosOperations();
 
   const [showModal, setShowModal] = useState(false);
 
+  //Method to toggle modal state
   const btnPlaylistModalHandler = () => {
     setShowModal((prev) => !prev);
   };
 
+  //Finding video detail of current video
   const video = videos.find((video) => videoID === video.videoID);
+
+  //Destructuring video details
   const {
     title,
     description,
@@ -38,46 +47,57 @@ export function WatchVideo() {
     category,
   } = video;
 
+  //Getting videos with similar categories for recommendation section
   const similarVideos = getSimilarVideos(category, videos, videoID);
 
+  //function to handle like on video
   const btnLikeHandler = () => {
     manageVideoLike(video);
   };
 
+  //funciton to handle watch later on video
+
   const btnWatchLaterHandler = () => {
     manageWatchLater(video);
   };
+
+  //Accessing token from auth context
   const {
     auth: { encodedToken },
   } = useAuth();
-  console.log(encodedToken);
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios.post(
-          HISTORY_API,
-          {
-            video,
-          },
-          {
-            headers: { authorization: encodedToken },
-          }
-        );
 
-        const { history } = response.data;
-        console.log(history);
-        if (response.status === 201) {
-          videosOperationsDispatcher({
-            type: "MANAGE_HISTORY",
-            payload: history,
-          });
+  useEffect(() => {
+    const isVideoInHistory = historyVideos.some(
+      ({ _id: currVideoId }) => video._id === currVideoId
+    );
+    if (!isVideoInHistory && encodedToken) {
+      (async () => {
+        try {
+          const response = await axios.post(
+            HISTORY_API,
+            {
+              video,
+            },
+            {
+              headers: { authorization: encodedToken },
+            }
+          );
+
+          const { history } = response.data;
+
+          if (response.status === 201) {
+            videosOperationsDispatcher({
+              type: "MANAGE_HISTORY",
+              payload: history,
+            });
+          }
+          console.log(response);
+        } catch (error) {
+          console.log(error);
         }
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [encodedToken, video, videosOperationsDispatcher]);
+      })();
+    }
+  }, [encodedToken, video, videosOperationsDispatcher, historyVideos]);
 
   return (
     <div className={styles.container}>

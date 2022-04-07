@@ -15,7 +15,6 @@ export function IndividualPlaylist() {
   const playlist = playlists.find(({ _id }) => _id === playlistID);
 
   const { videos: playlistVideos } = playlist;
-  console.log(playlistVideos.length);
 
   const btnDeletePlaylistHandler = () => {
     deletePlaylist(playlistID);
@@ -33,7 +32,7 @@ export function IndividualPlaylist() {
       <main className={styles.main}>
         <div className={styles.topBar}>
           <button
-            className={`btn btn-danger btn-secondary ${styles.btnDeletePlaylist}`}
+            className={`btn btn-danger ${styles.btnDeletePlaylist}`}
             onClick={btnDeletePlaylistHandler}
           >
             Delete Playlist

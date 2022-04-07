@@ -6,10 +6,12 @@ import {
 import axios from "axios";
 import { LIKES_API, WATCHLATER_API, HISTORY_API } from "utils/APIEndPoints";
 import { useAuth } from "./auth-context";
+import { useSnackbar } from "./snackbar-context";
 
 const VideosOperationsContext = createContext(null);
 
 const VideosOperationsProvider = ({ children }) => {
+  const { addSnackbar } = useSnackbar();
   const {
     auth: { encodedToken },
   } = useAuth();
@@ -46,9 +48,16 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_WATCHLATER",
           payload: watchlater,
         });
+
+        response.status === 201
+          ? addSnackbar("Video added to watch later", "snackbar-info")
+          : addSnackbar("Video removed from watch later", "snackbar-danger");
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to add to watch later", "snackbar-danger");
+      }
     }
   };
 
@@ -75,9 +84,15 @@ const VideosOperationsProvider = ({ children }) => {
 
       if (response.status === 201 || response.status === 200) {
         videosOperationsDispatcher({ type: "MANAGE_LIKES", payload: likes });
+        response.status === 201
+          ? addSnackbar("Video added to liked", "snackbar-info")
+          : addSnackbar("Video removed from liked", "snackbar-danger");
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to add video to like", "snackbar-danger");
+      }
     }
   };
 
@@ -94,6 +109,8 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_HISTORY",
           payload: history,
         });
+
+        addSnackbar("Video removed from history", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);
@@ -113,6 +130,7 @@ const VideosOperationsProvider = ({ children }) => {
           type: "MANAGE_HISTORY",
           payload: history,
         });
+        addSnackbar("History cleared", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);

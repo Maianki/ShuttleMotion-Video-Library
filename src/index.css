@@ -13,11 +13,14 @@
   --TEXT-HIGHLIGHT-COLOR:#767971;
   --CHIPS-TEXT-COLOR:#c4ceb2;
   --ACCENT-COLOR:#767971;
+  --BTN-SECONDARY-COLOR:#736a79;
   --LIGHT-GRAY-COLOR:#6f6975;
   --GRAY-COLOR:#e4dbdb;
   --ROSE-RED: #ff5964;
   --CARD-SHADOW-1:rgba(127, 0, 0, 0.12);
   --CARD-SHADOW-2:rgba(0,0,0,0.24);
+  --Z-INDEX-9:9;
+  --Z-INDEX-99:99;
 }
 
 /*RESET CSS*/
@@ -78,4 +81,16 @@ body{
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+.snackbar-container {
+  font-size: 14px;
+  position: fixed;
+  z-index: var(--Z-INDEX-99);
+  top: 8rem;
+  right: 1rem;
+  animation: toast-in-right .7s;
+}
+.btn-secondary {
+  background-color: var(--BTN-SECONDARY-COLOR);
 }

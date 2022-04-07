@@ -38,7 +38,7 @@ export function Sidebar() {
         <section className={`list-unstyled ${styles.socialsMenu}`}>
           <li className={styles.socialNavLinks}>
             <a
-              href='https://twitter.com/Ankit_k10'
+              href='https://www.linkedin.com/in/ankit-kumain-4124a21b3/'
               target='_blank'
               rel='noreferrer'
             >
@@ -56,7 +56,7 @@ export function Sidebar() {
           </li>
           <li className={styles.socialNavLinks}>
             <a
-              href='https://www.linkedin.com/in/ankit-kumain-4124a21b3/'
+              href='https://twitter.com/Ankit_k10'
               target='_blank'
               rel='noreferrer'
             >

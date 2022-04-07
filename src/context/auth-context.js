@@ -3,14 +3,17 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 import { authReducer, authInitialState } from "reducers/auth-reducer";
 import { LOGIN_API, SIGNUP_API } from "utils/APIEndPoints";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "./snackbar-context";
 
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, authDispatcher] = useReducer(authReducer, authInitialState);
   const navigate = useNavigate();
+  const { addSnackbar } = useSnackbar();
   const handleSignup = async (userInfo) => {
     const { firstName, lastName, email, password, confirmPassword } = userInfo;
+
     try {
       const response = await axios.post(SIGNUP_API, {
         firstName,
@@ -30,11 +33,19 @@ const AuthProvider = ({ children }) => {
           type: "LOGGED_IN",
           payload: encodedToken,
         });
-
+        const {
+          createdUser: { firstName },
+        } = response.data;
+        addSnackbar(`${firstName} logged in.`, "snackbar-info");
         navigate("/", { replace: true });
       }
     } catch (error) {
-      console.log(error);
+      const { status } = error.response;
+      if (status === 422) {
+        addSnackbar("Email already exsist", "snackbar-danger");
+      } else {
+        addSnackbar(`${error.message}`, "snackbar-danger");
+      }
     }
   };
 
@@ -64,10 +75,25 @@ const AuthProvider = ({ children }) => {
           payload: encodedToken,
         });
 
+        const {
+          foundUser: { firstName },
+        } = response.data;
+        addSnackbar(`${firstName} logged in.`, "snackbar-info");
+
         navigate("/", { replace: true });
       }
     } catch (error) {
-      console.log(error);
+      const { status } = error.response;
+      if (status === 404) {
+        addSnackbar("This email is not registered", "snackbar-danger");
+      } else if (status === 401) {
+        addSnackbar(
+          "You entered incorrect email or password",
+          "snackbar-danger"
+        );
+      } else {
+        addSnackbar(`${error.message}`, "snackbar-danger");
+      }
     }
   };
 

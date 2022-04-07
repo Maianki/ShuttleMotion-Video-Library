@@ -6,11 +6,13 @@ import {
   playlistsInitialState,
   playlistsReducer,
 } from "reducers/playlist-reducer";
+import { useSnackbar } from "./snackbar-context";
 import { PLAYLISTS_API } from "utils/APIEndPoints";
 
 const PlaylistsContext = createContext(null);
 
 const PlaylistsProvider = ({ children }) => {
+  const { addSnackbar } = useSnackbar();
   const [playlists, playlistsDispatcher] = useReducer(
     playlistsReducer,
     playlistsInitialState
@@ -36,13 +38,15 @@ const PlaylistsProvider = ({ children }) => {
           type: "ADD_VIDEO_TO_PLAYLIST",
           payload: playlist,
         });
+        addSnackbar(
+          `Video added to the playlist - ${playlist.title}`,
+          "snackbar-info"
+        );
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
-  const managePlaylist = async (playlist, video) => {
+  const managePlaylist = async (playlist, video = "") => {
     try {
       const response = await axios.post(
         PLAYLISTS_API,
@@ -58,11 +62,19 @@ const PlaylistsProvider = ({ children }) => {
           type: "MANAGE_PLAYLIST",
           payload: playlists,
         });
-        const playlistId = playlists[playlists.length - 1]._id;
-        addVideoToPlaylist(playlistId, video);
+
+        if (video) {
+          const playlistId = playlists[playlists.length - 1]._id;
+          addVideoToPlaylist(playlistId, video);
+        }
+
+        console.log(playlists);
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to create playlist", "snackbar-danger");
+      }
     }
   };
 
@@ -78,6 +90,7 @@ const PlaylistsProvider = ({ children }) => {
           type: "MANAGE_PLAYLIST",
           payload: playlists,
         });
+        addSnackbar("Playlist deleted", "snackbar-danger");
       }
     } catch (err) {
       console.log(err);
@@ -99,6 +112,10 @@ const PlaylistsProvider = ({ children }) => {
           type: "DELETE_VIDEO_FROM_PLAYLIST",
           payload: playlist,
         });
+        addSnackbar(
+          `Video deleted from playlist - ${playlist.title}`,
+          "snackbar-danger"
+        );
       }
     } catch (err) {
       console.log(err);

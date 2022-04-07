@@ -9,3 +9,5 @@ export {
 } from "./videos-operations-context";
 
 export { usePlaylists, PlaylistsProvider } from "./playlists-context";
+
+export { useSnackbar, SnackbarProvider } from "./snackbar-context";

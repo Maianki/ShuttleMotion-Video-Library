@@ -3,11 +3,13 @@ import { Input, Label, Navbar } from "components";
 import { useDocumentTitle } from "hooks";
 import { BiEye, BiEyeSlash } from "assets";
 import { Link } from "react-router-dom";
-import { useAuth } from "context";
+import { useAuth, useSnackbar } from "context";
 import styles from "./signup.module.css";
 
 export function Signup() {
   useDocumentTitle("Sign Up");
+
+  const { addSnackbar } = useSnackbar();
 
   const [userDetails, setUserDetails] = useState({
     firstName: "",
@@ -28,15 +30,22 @@ export function Signup() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    handleSignup(userDetails);
-    setUserDetails({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      termsAndCondition: "",
-    });
+    if (userDetails.password !== userDetails.confirmPassword) {
+      addSnackbar(
+        "Password and confirm password doesn't match",
+        "snackbar-danger"
+      );
+    } else {
+      handleSignup(userDetails);
+      setUserDetails({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        termsAndCondition: "",
+      });
+    }
   };
   return (
     <div className='container'>
@@ -96,7 +105,7 @@ export function Signup() {
                 userDetails={userDetails}
               />
               <span
-                className='toggle-password'
+                className={styles.togglePassword}
                 onClick={() =>
                   setShowPassword({
                     ...showPassWord,
@@ -129,7 +138,6 @@ export function Signup() {
                 }
               >
                 {showPassWord.confirmPassword ? <BiEye /> : <BiEyeSlash />}
-                <i className='fas fa-eye'></i>
               </span>
             </div>
 

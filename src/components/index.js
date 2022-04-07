@@ -8,5 +8,6 @@ export { PlaylistsCard } from "./Card";
 export { RequireAuth } from "./RequireAuth/RequireAuth";
 export { RestrictAuth } from "./RequireAuth/RestrictAuth";
 export { PlaylistModal } from "./PlaylistModal/PlaylistModal";
+export { Snackbar } from "./Sanckbar/Snackbar";
 export { EmptyPlaceholder } from "./EmptyPlaceholder/EmptyPlaceholder";
 

@@ -1,5 +1,11 @@
-import React from "react";
-import { Navbar, Sidebar, PlaylistsCard, EmptyPlaceholder } from "components";
+import React, { useState } from "react";
+import {
+  Navbar,
+  Sidebar,
+  PlaylistsCard,
+  EmptyPlaceholder,
+  PlaylistModal,
+} from "components";
 import styles from "./playlists.module.css";
 import { usePlaylists } from "context";
 
@@ -7,6 +13,13 @@ export function Playlists() {
   const {
     playlists: { playlists },
   } = usePlaylists();
+
+  const [showModal, setShowModal] = useState(false);
+
+  //Method to toggle modal state
+  const btnPlaylistModalHandler = () => {
+    setShowModal((prev) => !prev);
+  };
 
   return (
     <div className={styles.container}>
@@ -18,13 +31,37 @@ export function Playlists() {
       </section>
 
       <main className={styles.main}>
-        {playlists.length ? "" : <EmptyPlaceholder />}
-        <div className={styles.topBar}></div>
+        {playlists.length ? (
+          ""
+        ) : (
+          <>
+            <div className={styles.topBar}>
+              <button
+                className={`btn btn-danger btn-danger ${styles.btnCreatePlaylist}`}
+                onClick={btnPlaylistModalHandler}
+              >
+                create a new Playlist
+              </button>
+            </div>
+            <EmptyPlaceholder />
+          </>
+        )}
+        <div className={styles.topBar}>
+          <button
+            className={`btn btn-danger btn-danger ${styles.btnCreatePlaylist}`}
+            onClick={btnPlaylistModalHandler}
+          >
+            create a new Playlist
+          </button>
+        </div>
         <section className={styles.playlists}>
           {playlists.map((playlist) => {
             return <PlaylistsCard playlist={playlist} key={playlist._id} />;
           })}
         </section>
+        {showModal && (
+          <PlaylistModal btnModalHandler={btnPlaylistModalHandler} />
+        )}
       </main>
     </div>
   );

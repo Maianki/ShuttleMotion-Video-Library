@@ -7,6 +7,7 @@ import { useLocation, Link } from "react-router-dom";
 import { getTrimVideoTitle } from "utils";
 import { useVideosOperations, usePlaylists } from "context";
 import { PlaylistModal } from "components";
+import { MdPlaylistPlay } from "react-icons/md";
 
 export function VideoCard({
   playlist = "",
@@ -97,19 +98,24 @@ export function VideoCard({
                 onClick={btnWatchLaterHandler}
               >
                 {watchLaterVideos.find(({ _id }) => _id === id) ? (
-                  <CharmTick className='text-md' />
+                  <>
+                    <CharmTick className='text-md' />
+                    <span className='text-sm'>Remove from watch</span>
+                  </>
                 ) : (
-                  <IcSharpPlus className='text-md' />
+                  <>
+                    <IcSharpPlus className='text-md' />
+                    <span className='pd-ht-1 text-sm'>Add to watch later</span>
+                  </>
                 )}
-                Add to watch Later
               </li>
               <li
                 className={`${styles.videoOptionsItem} flex-row`}
                 role='button'
                 onClick={btnPlaylistModalHandler}
               >
-                <IcSharpPlus className='text-md' />
-                Save to playlist
+                <MdPlaylistPlay className='text-md' />
+                <span className='pd-ht-1 text-sm'>Save to playlist</span>
               </li>
             </ol>
           )}

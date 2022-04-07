@@ -7,6 +7,7 @@ import { useLocation, Link } from "react-router-dom";
 import { getTrimVideoTitle } from "utils";
 import { useVideosOperations, usePlaylists } from "context";
 import { PlaylistModal } from "components";
+import { MdPlaylistPlay } from "react-icons/md";
 
 export function VideoCard({
   playlist = "",
@@ -101,15 +102,15 @@ export function VideoCard({
                 ) : (
                   <IcSharpPlus className='text-md' />
                 )}
-                Add to watch Later
+                <span className='pd-ht-1 text-sm'>Add to watch later</span>
               </li>
               <li
                 className={`${styles.videoOptionsItem} flex-row`}
                 role='button'
                 onClick={btnPlaylistModalHandler}
               >
-                <IcSharpPlus className='text-md' />
-                Save to playlist
+                <MdPlaylistPlay className='text-md' />
+                <span className='pd-ht-1 text-sm'>Save to playlist</span>
               </li>
             </ol>
           )}

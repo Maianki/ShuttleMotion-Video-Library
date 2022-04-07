@@ -3,12 +3,15 @@ import styles from "./playlistmodal.module.css";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Label } from "components";
 import { usePlaylists, useSnackbar } from "context";
+import { useLocation } from "react-router-dom";
 
-export function PlaylistModal({ btnModalHandler, video }) {
+export function PlaylistModal({ btnModalHandler, video = "" }) {
   const [playlistDetail, setPlaylistDetail] = useState({
     title: "",
     description: "",
   });
+
+  const { pathname } = useLocation();
 
   const { addSnackbar } = useSnackbar();
 
@@ -64,23 +67,24 @@ export function PlaylistModal({ btnModalHandler, video }) {
         </div>
 
         <div className={`modal-body flex-column ${styles.playlistsName}`}>
-          {playlists.map(({ _id, title, videos }) => {
-            return (
-              <div key={_id} className='form-check'>
-                <input
-                  type='checkbox'
-                  id={title}
-                  checked={videos.some(
-                    ({ _id: videoId }) => currVideoId === videoId
-                  )}
-                  onChange={(e) => playlistChangeHandler(e, _id)}
-                />
-                <label className='form-label-inline' htmlFor={title}>
-                  {title}
-                </label>
-              </div>
-            );
-          })}
+          {pathname !== "/playlist" &&
+            playlists.map(({ _id, title, videos }) => {
+              return (
+                <div key={_id} className='form-check'>
+                  <input
+                    type='checkbox'
+                    id={title}
+                    checked={videos.some(
+                      ({ _id: videoId }) => currVideoId === videoId
+                    )}
+                    onChange={(e) => playlistChangeHandler(e, _id)}
+                  />
+                  <label className='form-label-inline' htmlFor={title}>
+                    {title}
+                  </label>
+                </div>
+              );
+            })}
         </div>
 
         <div className='modal-footer flex-row'>

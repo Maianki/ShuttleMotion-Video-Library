@@ -48,7 +48,7 @@ const PlaylistsProvider = ({ children }) => {
     }
   };
 
-  const managePlaylist = async (playlist, video) => {
+  const managePlaylist = async (playlist, video = "") => {
     try {
       const response = await axios.post(
         PLAYLISTS_API,
@@ -65,8 +65,12 @@ const PlaylistsProvider = ({ children }) => {
           payload: playlists,
         });
 
-        const playlistId = playlists[playlists.length - 1]._id;
-        addVideoToPlaylist(playlistId, video);
+        if (video) {
+          const playlistId = playlists[playlists.length - 1]._id;
+          addVideoToPlaylist(playlistId, video);
+        }
+
+        console.log(playlists);
       }
     } catch (err) {
       console.log(err);

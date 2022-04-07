@@ -32,7 +32,7 @@ export function IndividualPlaylist() {
       <main className={styles.main}>
         <div className={styles.topBar}>
           <button
-            className={`btn btn-danger btn-secondary ${styles.btnDeletePlaylist}`}
+            className={`btn btn-danger ${styles.btnDeletePlaylist}`}
             onClick={btnDeletePlaylistHandler}
           >
             Delete Playlist

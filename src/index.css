@@ -13,6 +13,7 @@
   --TEXT-HIGHLIGHT-COLOR:#767971;
   --CHIPS-TEXT-COLOR:#c4ceb2;
   --ACCENT-COLOR:#767971;
+  --BTN-SECONDARY-COLOR:#736a79;
   --LIGHT-GRAY-COLOR:#6f6975;
   --GRAY-COLOR:#e4dbdb;
   --ROSE-RED: #ff5964;
@@ -87,4 +88,7 @@ body{
   top: 8rem;
   right: 1rem;
   animation: toast-in-right .7s;
+}
+.btn-secondary {
+  background-color: var(--BTN-SECONDARY-COLOR);
 }

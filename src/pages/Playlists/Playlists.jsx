@@ -31,10 +31,24 @@ export function Playlists() {
       </section>
 
       <main className={styles.main}>
-        {playlists.length ? "" : <EmptyPlaceholder />}
+        {playlists.length ? (
+          ""
+        ) : (
+          <>
+            <div className={styles.topBar}>
+              <button
+                className={`btn btn-danger btn-danger ${styles.btnCreatePlaylist}`}
+                onClick={btnPlaylistModalHandler}
+              >
+                create a new Playlist
+              </button>
+            </div>
+            <EmptyPlaceholder />
+          </>
+        )}
         <div className={styles.topBar}>
           <button
-            className={`btn btn-danger btn-secondary ${styles.btnCreatePlaylist}`}
+            className={`btn btn-danger btn-danger ${styles.btnCreatePlaylist}`}
             onClick={btnPlaylistModalHandler}
           >
             create a new Playlist

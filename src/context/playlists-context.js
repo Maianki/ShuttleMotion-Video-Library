@@ -43,9 +43,7 @@ const PlaylistsProvider = ({ children }) => {
           "snackbar-info"
         );
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   const managePlaylist = async (playlist, video = "") => {
@@ -73,7 +71,10 @@ const PlaylistsProvider = ({ children }) => {
         console.log(playlists);
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to create playlist", "snackbar-danger");
+      }
     }
   };
 

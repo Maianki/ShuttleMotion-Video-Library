@@ -19,6 +19,8 @@
   --ROSE-RED: #ff5964;
   --CARD-SHADOW-1:rgba(127, 0, 0, 0.12);
   --CARD-SHADOW-2:rgba(0,0,0,0.24);
+  --Z-INDEX-9:9;
+  --Z-INDEX-99:99;
 }
 
 /*RESET CSS*/
@@ -84,7 +86,7 @@ body{
 .snackbar-container {
   font-size: 14px;
   position: fixed;
-  z-index: 10;
+  z-index: var(--Z-INDEX-99);
   top: 8rem;
   right: 1rem;
   animation: toast-in-right .7s;

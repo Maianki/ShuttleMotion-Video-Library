@@ -1,16 +1,6 @@
 .shuttleMotionSnackbar {
-    margin-bottom: 1rem;
-    transition: .3s ease;
+    margin-top: 1rem;
+    transition: all .3s ease-in;
     bottom: 1rem;
     right: 1rem;
-}
-
-@keyframes snackbar-in-right {
-    from {
-        transform: translateX(100%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
 }

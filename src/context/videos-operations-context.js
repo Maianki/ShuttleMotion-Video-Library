@@ -54,7 +54,10 @@ const VideosOperationsProvider = ({ children }) => {
           : addSnackbar("Video removed from watch later", "snackbar-danger");
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to add to watch later", "snackbar-danger");
+      }
     }
   };
 
@@ -86,7 +89,10 @@ const VideosOperationsProvider = ({ children }) => {
           : addSnackbar("Video removed from liked", "snackbar-danger");
       }
     } catch (err) {
-      console.log(err);
+      const { status, data } = err.response;
+      if (status === 500 && data.message === "Invalid token specified") {
+        addSnackbar("Please login to add video to like", "snackbar-danger");
+      }
     }
   };
 

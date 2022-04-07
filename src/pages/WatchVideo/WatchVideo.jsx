@@ -70,7 +70,7 @@ export function WatchVideo() {
     const isVideoInHistory = historyVideos.some(
       ({ _id: currVideoId }) => video._id === currVideoId
     );
-    if (!isVideoInHistory) {
+    if (!isVideoInHistory && encodedToken) {
       (async () => {
         try {
           const response = await axios.post(

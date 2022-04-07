@@ -1,7 +1,7 @@
 .playlistModal {
     min-width: 20rem;
     position: fixed;
-    z-index: 9;
+    z-index: var(--Z-INDEX-9);
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);

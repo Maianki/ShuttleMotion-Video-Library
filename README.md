@@ -17,7 +17,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#shuttle-shopy">About The Project</a>
+      <a href="#about-shuttle-shopy">About The Project</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>

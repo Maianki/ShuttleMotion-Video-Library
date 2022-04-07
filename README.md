@@ -17,7 +17,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-shuttle-shopy">About The Project</a>
+      <a href="#about-shuttle-motion">About The Project</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -42,7 +42,7 @@
 
 ---
 
-## About Shuttle Shopy
+## About Shuttle Motion
 Shuttle motion is a video library where you can watch all badminton related videos. From tutorials to match highlights to players interviews. Shuttle motion is built using react, shuttle UI, react-router and mockbee as a mock backend.
 
 ---

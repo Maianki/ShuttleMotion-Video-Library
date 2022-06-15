@@ -36,19 +36,10 @@ export function WatchVideo() {
   };
 
   //Finding video detail of current video
-  const video = videos.find((video) => videoID === video.videoID);
-
-  //Destructuring video details
-  const {
-    title,
-    description,
-    creator: { name: creatorName, profile: creatorProfile },
-    views,
-    category,
-  } = video;
+  const video = videos && videos?.find((video) => videoID === video.videoID);
 
   //Getting videos with similar categories for recommendation section
-  const similarVideos = getSimilarVideos(category, videos, videoID);
+  const similarVideos = getSimilarVideos(video?.category, videos, videoID);
 
   //function to handle like on video
   const btnLikeHandler = () => {
@@ -67,8 +58,9 @@ export function WatchVideo() {
   } = useAuth();
 
   useEffect(() => {
+    console.log(video, encodedToken);
     const isVideoInHistory = historyVideos.some(
-      ({ _id: currVideoId }) => video._id === currVideoId
+      (currVideo) => video?._id === currVideo?._id
     );
     if (!isVideoInHistory && encodedToken) {
       (async () => {
@@ -97,7 +89,7 @@ export function WatchVideo() {
         }
       })();
     }
-  }, [encodedToken, video, videosOperationsDispatcher, historyVideos]);
+  }, [video?._id]);
 
   return (
     <div className={styles.container}>
@@ -107,84 +99,85 @@ export function WatchVideo() {
       <section className={styles.sidebar}>
         <Sidebar />
       </section>
-
-      <main className={styles.main}>
-        <section className={styles.videoPlayer}>
-          <div className={styles.iframeContainer}>
-            <iframe
-              src={`https://www.youtube.com/embed/${videoID}?rel=0`}
-              title='YouTube video player'
-              frameBorder='0'
-            ></iframe>
-          </div>
-
-          <section className={styles.videoAbout}>
-            <h3>{title}</h3>
-            <div className={`flex-row ${styles.videoButtons}`}>
-              <img
-                className='avatar avatar-round avatar-xs'
-                src={creatorProfile}
-                alt={creatorName}
-              />
-              <p className='text-bold-700 pd-ht-1'> {creatorName}</p>
-              <span className={`text-md  ${styles.videoViewsCount}`}>
-                | {views} views
-              </span>
-              <button
-                className={`btn btn-primary ${styles.btnVideoPlayer}`}
-                onClick={btnLikeHandler}
-              >
-                {likedVideos.find(({ _id }) => _id === video._id) ? (
-                  <>
-                    <AiFillLike />
-                    <span className='text-md pd-ht-1'>Liked</span>
-                  </>
-                ) : (
-                  <>
-                    <AiOutlineLike />
-                    <span className='text-md pd-ht-1'>Like</span>
-                  </>
-                )}
-              </button>
-              <button
-                className={`btn btn-primary ${styles.btnVideoPlayer}`}
-                onClick={btnPlaylistModalHandler}
-              >
-                <RiPlayListAddFill />
-                <span className='text-md pd-ht-1'>Save</span>
-              </button>
-              <button
-                className={`btn btn-primary ${styles.btnVideoPlayer}`}
-                onClick={btnWatchLaterHandler}
-              >
-                {watchLaterVideos.find(({ _id }) => _id === video._id) ? (
-                  <BsStopwatchFill />
-                ) : (
-                  <BsStopwatch />
-                )}
-
-                <span className='text-md pd-ht-1'>Watch Later</span>
-              </button>
+      {video && (
+        <main className={styles.main}>
+          <section className={styles.videoPlayer}>
+            <div className={styles.iframeContainer}>
+              <iframe
+                src={`https://www.youtube.com/embed/${videoID}?rel=0`}
+                title='YouTube video player'
+                frameBorder='0'
+              ></iframe>
             </div>
-            <hr />
-            <p className={styles.videoDescription}>{description}</p>
-          </section>
-        </section>
-        {showModal && (
-          <PlaylistModal
-            btnModalHandler={btnPlaylistModalHandler}
-            video={video}
-          />
-        )}
 
-        {/*Recommendition section*/}
-        <section className='videoRecommendation'>
-          <h2 className={styles.recommendationHeading}>Similar videos</h2>
-          {similarVideos.map((video) => {
-            return <VideoCard key={video._id} video={video} />;
-          })}
-        </section>
-      </main>
+            <section className={styles.videoAbout}>
+              <h3>{video?.title}</h3>
+              <div className={`flex-row ${styles?.videoButtons}`}>
+                <img
+                  className='avatar avatar-round avatar-xs'
+                  src={video?.creator?.profile}
+                  alt={video?.creator?.name}
+                />
+                <p className='text-bold-700 pd-ht-1'> {video?.creator?.name}</p>
+                <span className={`text-md  ${styles.videoViewsCount}`}>
+                  | {video.views} views
+                </span>
+                <button
+                  className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                  onClick={btnLikeHandler}
+                >
+                  {likedVideos.find(({ _id }) => _id === video._id) ? (
+                    <>
+                      <AiFillLike />
+                      <span className='text-md pd-ht-1'>Liked</span>
+                    </>
+                  ) : (
+                    <>
+                      <AiOutlineLike />
+                      <span className='text-md pd-ht-1'>Like</span>
+                    </>
+                  )}
+                </button>
+                <button
+                  className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                  onClick={btnPlaylistModalHandler}
+                >
+                  <RiPlayListAddFill />
+                  <span className='text-md pd-ht-1'>Save</span>
+                </button>
+                <button
+                  className={`btn btn-primary ${styles.btnVideoPlayer}`}
+                  onClick={btnWatchLaterHandler}
+                >
+                  {watchLaterVideos.find(({ _id }) => _id === video._id) ? (
+                    <BsStopwatchFill />
+                  ) : (
+                    <BsStopwatch />
+                  )}
+
+                  <span className='text-md pd-ht-1'>Watch Later</span>
+                </button>
+              </div>
+              <hr />
+              <p className={styles.videoDescription}>{video.description}</p>
+            </section>
+          </section>
+          {showModal && (
+            <PlaylistModal
+              btnModalHandler={btnPlaylistModalHandler}
+              video={video}
+            />
+          )}
+
+          {/*Recommendition section*/}
+          <section className='videoRecommendation'>
+            <h2 className={styles.recommendationHeading}>Similar videos</h2>
+            {similarVideos.map((video) => {
+              return <VideoCard key={video._id} video={video} />;
+            })}
+          </section>
+        </main>
+      )}
     </div>
   );
 }

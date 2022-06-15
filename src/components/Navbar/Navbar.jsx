@@ -35,18 +35,7 @@ export function Navbar() {
         />
       </Link>
 
-      <ul className='navbar-menu menu-hamburger list-unstyled flex-row'>
-        <li className='list-inline'>
-          <span
-            className={`flex-column menu-link menu-hamburger ${styles.hamburger}`}
-          >
-            <GiHamburgerMenu />
-          </span>
-        </li>
-      </ul>
-      <ul
-        className={`navbar-menu navbar-responsive-menu list-unstyled flex-row  ${styles.flexRowEnd}`}
-      >
+      <ul className={styles.navLink}>
         <li className='list-inline'>
           {isAuthenticated && encodedToken ? (
             <button

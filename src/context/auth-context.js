@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { authReducer, authInitialState } from "reducers/auth-reducer";
 import { LOGIN_API, SIGNUP_API } from "utils/APIEndPoints";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSnackbar } from "./snackbar-context";
 
 const AuthContext = createContext(null);
@@ -10,6 +10,7 @@ const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [auth, authDispatcher] = useReducer(authReducer, authInitialState);
   const navigate = useNavigate();
+  const location = useLocation();
   const { addSnackbar } = useSnackbar();
   const handleSignup = async (userInfo) => {
     const { firstName, lastName, email, password, confirmPassword } = userInfo;
@@ -37,7 +38,7 @@ const AuthProvider = ({ children }) => {
           createdUser: { firstName },
         } = response.data;
         addSnackbar(`${firstName} logged in.`, "snackbar-info");
-        navigate("/", { replace: true });
+        navigate(location?.state?.from?.pathname ?? "/", { replace: true });
       }
     } catch (error) {
       const { status } = error.response;
@@ -80,7 +81,7 @@ const AuthProvider = ({ children }) => {
         } = response.data;
         addSnackbar(`${firstName} logged in.`, "snackbar-info");
 
-        navigate("/", { replace: true });
+        navigate(location?.state?.from?.pathname ?? "/", { replace: true });
       }
     } catch (error) {
       const { status } = error.response;

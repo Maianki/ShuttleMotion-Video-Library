@@ -6,14 +6,16 @@ import {
   PhGithubLogoDuotone,
 } from "assets";
 
+import { useWindowSize } from "hooks";
 import { NavLink } from "react-router-dom";
 import { sideNavLinks } from "data";
 
 export function Sidebar() {
-  
+  const { width } = useWindowSize();
+
   return (
     <aside className={styles.sidebar}>
-      <ol className='list-unstyled pd-vt-2'>
+      <ol className={`${styles.sidebarLinks} list-unstyled `}>
         {sideNavLinks.map(({ _id, linkTo, linkName, Icon }) => {
           return (
             <li key={_id} className={styles.sidebarMenu}>
@@ -26,15 +28,17 @@ export function Sidebar() {
                 }
               >
                 <span className={styles.sidebarIcon}>{Icon}</span>
-                {linkName}
+                {width > 640 && linkName}
               </NavLink>
             </li>
           );
         })}
       </ol>
 
-      <ol>
-        <h3 className='text-center'>Connect with me on</h3>
+      <ol className={styles.socialHandles}>
+        <h3 className={`text-center ${styles.socialHeading}`}>
+          Connect with me on
+        </h3>
         <section className={`list-unstyled ${styles.socialsMenu}`}>
           <li className={styles.socialNavLinks}>
             <a

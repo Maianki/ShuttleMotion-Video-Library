@@ -8,11 +8,13 @@ import { BsStopwatch, BsStopwatchFill } from "react-icons/bs";
 import { getSimilarVideos } from "utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useWindowSize } from "hooks";
 import { HISTORY_API } from "utils/APIEndPoints";
 
 export function WatchVideo() {
   //Getting video id fro params
   const { videoID } = useParams();
+  const { width } = useWindowSize();
 
   //Extracting videos from videos and categories context
   const {
@@ -129,12 +131,16 @@ export function WatchVideo() {
                   {likedVideos.find(({ _id }) => _id === video._id) ? (
                     <>
                       <AiFillLike />
-                      <span className='text-md pd-ht-1'>Liked</span>
+                      {width > 1310 && (
+                        <span className='text-md pd-ht-1'>Liked</span>
+                      )}
                     </>
                   ) : (
                     <>
                       <AiOutlineLike />
-                      <span className='text-md pd-ht-1'>Like</span>
+                      {width > 1310 && (
+                        <span className='text-md pd-ht-1'>Like</span>
+                      )}
                     </>
                   )}
                 </button>
@@ -143,7 +149,9 @@ export function WatchVideo() {
                   onClick={btnPlaylistModalHandler}
                 >
                   <RiPlayListAddFill />
-                  <span className='text-md pd-ht-1'>Save</span>
+                  {width > 1310 && (
+                    <span className='text-md pd-ht-1'>Save</span>
+                  )}
                 </button>
                 <button
                   className={`btn btn-primary ${styles.btnVideoPlayer}`}
@@ -155,7 +163,9 @@ export function WatchVideo() {
                     <BsStopwatch />
                   )}
 
-                  <span className='text-md pd-ht-1'>Watch Later</span>
+                  {width > 1310 && (
+                    <span className='text-md pd-ht-1'>Watch Later</span>
+                  )}
                 </button>
               </div>
               <hr />
@@ -170,7 +180,7 @@ export function WatchVideo() {
           )}
 
           {/*Recommendition section*/}
-          <section className='videoRecommendation'>
+          <section className={styles.videoRecommendation}>
             <h2 className={styles.recommendationHeading}>Similar videos</h2>
             {similarVideos.map((video) => {
               return <VideoCard key={video._id} video={video} />;

@@ -14,7 +14,6 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
-    "react-youtube": "^9.0.2",
     "uuid": "^8.3.2"
   },
   "scripts": {

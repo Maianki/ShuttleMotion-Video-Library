@@ -35,3 +35,29 @@
     gap:2px;
     padding: 1rem 3.2rem;
     }
+@media screen and (max-width:640px) {
+    .container {
+        grid-template-columns: 8rem 1fr;
+    }
+}
+
+@media screen and (max-width:460px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas: "navbar"
+            "main"
+            "sidebar";
+    }
+
+    .watchlaterVideos {
+        padding: 1rem;
+    }
+
+    .sidebar {
+        position: fixed;
+        z-index: 1100;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}

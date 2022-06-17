@@ -100,3 +100,8 @@ body{
     font-size: 55%;
   }
 }
+@media screen and (max-width:320px) {
+  html {
+    font-size: 52%;
+  }
+}

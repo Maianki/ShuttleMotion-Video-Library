@@ -5,7 +5,7 @@ import styles from "./watchvideo.module.css";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import { BsStopwatch, BsStopwatchFill } from "react-icons/bs";
-import { getSimilarVideos } from "utils";
+import { getSimilarVideos, throttle } from "utils";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useWindowSize } from "hooks";
@@ -45,7 +45,7 @@ export function WatchVideo() {
 
   //function to handle like on video
   const btnLikeHandler = () => {
-    manageVideoLike(video);
+    throttleLike();
   };
 
   //funciton to handle watch later on video
@@ -59,8 +59,10 @@ export function WatchVideo() {
     auth: { encodedToken },
   } = useAuth();
 
+  //throttling like , watch later and playlist page
+  const throttleLike = throttle(() => manageVideoLike(video), 800);
+
   useEffect(() => {
-    console.log(video, encodedToken);
     const isVideoInHistory = historyVideos.some(
       (currVideo) => video?._id === currVideo?._id
     );
@@ -85,7 +87,6 @@ export function WatchVideo() {
               payload: history,
             });
           }
-          console.log(response);
         } catch (error) {
           console.log(error);
         }

@@ -91,6 +91,17 @@ body{
   right: 1rem;
   animation: toast-in-right .7s;
 }
+
 .btn-secondary {
   background-color: var(--BTN-SECONDARY-COLOR);
+}
+@media screen and (max-width:384px) {
+  html {
+    font-size: 55%;
+  }
+}
+@media screen and (max-width:320px) {
+  html {
+    font-size: 52%;
+  }
 }

@@ -41,4 +41,10 @@
       width: 100%;
       align-self: center;
   }
-  
+
+@media screen and (max-width:460px) {
+  .formContainer {
+    min-width: 36rem;
+    padding: 2.5rem;
+  }
+}

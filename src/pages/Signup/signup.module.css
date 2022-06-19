@@ -30,3 +30,10 @@
     padding-top: 1rem;
     border-top: 1px solid var(--PRIMARY-COLOR);
   }
+
+@media screen and (max-width:460px) {
+  .formContainer {
+    min-width: 36rem;
+    padding: 2.5rem;
+  }
+}

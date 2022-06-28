@@ -23,4 +23,9 @@
     color:var(--WHITE-COLOR)
 }
 
+.navLink {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
 

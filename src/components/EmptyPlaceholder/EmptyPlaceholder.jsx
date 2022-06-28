@@ -22,7 +22,9 @@ export function EmptyPlaceholder() {
     <section className={styles.emptySection}>
       <img src={emptyBox} className='round-img round-lg' alt='empty box' />
       <h2 className={styles.emptySectionHeading}>{heading}</h2>
-      <p className='text-gray md-btm-2'>{description}</p>
+      <p className={`text-gray md-btm-2 ${styles.description}`}>
+        {description}
+      </p>
       <button className='btn btn-primary' onClick={btnClickHandler}>
         Browse Videos
       </button>

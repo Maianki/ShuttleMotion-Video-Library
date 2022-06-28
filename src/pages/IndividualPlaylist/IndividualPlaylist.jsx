@@ -39,7 +39,7 @@ export function IndividualPlaylist() {
           </button>
         </div>
         {playlistVideos.length ? "" : <EmptyPlaceholder />}
-        <section className={styles.historyVideos}>
+        <section className={styles.individualVideos}>
           {playlistVideos.map((video) => {
             return (
               <VideoCard video={video} key={video._id} playlist={playlist} />

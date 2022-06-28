@@ -10,6 +10,9 @@
     padding-top:0rem;
 }
 
+.sidebarLinks {
+    padding: 2rem 0;
+}
 .sidebarIcon{
     font-size: 3.4rem;
     display: inline-block;
@@ -44,6 +47,7 @@ ol{
     border-left: 6px solid var(--PRIMARY-COLOR-DARK-20);
     padding: 1rem 1.2rem;
 }
+
 a{
     color: inherit;
 }
@@ -61,3 +65,73 @@ a{
     padding:0 1rem;
 }
 
+@media screen and (max-width:640px) {
+    .sidebar {
+        width: 8rem;
+    }
+
+.socialHandles {
+    display: flex;
+    flex-direction: column;
+}
+
+.socialHeading {
+    display: none;
+}
+
+.socialsMenu {
+    flex-direction: column;
+}
+}
+
+@media screen and (max-width:460px) {
+    .sidebar {
+        display: flex;
+        flex-direction: row;
+        min-width: 100vw;
+        height: 5.2rem;
+    }
+
+    .socialHeading {
+        display: none;
+    }
+
+    .socialsMenu {
+        display: none;
+    }
+
+    .sidebarLinks {
+        display: flex;
+        flex-grow: 1;
+        padding: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebarMenu {
+        display: flex;
+    }
+
+    .sidebarIcon {
+        font-size: 2.8rem;
+    }
+
+    .isNavLinkActive {
+        border-left: 0;
+        padding: 1rem;
+        border-top: 6px solid var(--TEXT-HIGHLIGHT-COLOR)
+    }
+
+    .isNavLinkInactive {
+        border-left: 0;
+        padding: 1rem;
+        border-top: 6px solid var(--PRIMARY-COLOR-DARK-20);
+    }
+
+}
+
+@media screen and (max-width:384px) {
+    .sidebarIcon {
+        font-size: 2.4rem;
+    }
+}

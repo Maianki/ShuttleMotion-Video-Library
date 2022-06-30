@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./videolisting.module.css";
+import { ImSearch } from "react-icons/im";
 import { useVideosAndCategories } from "context/videos-and-category-context";
 import { Navbar, Sidebar, VideoCard, Chips } from "components";
 import { useFilteredData } from "hooks/useFilteredData";
+import { useDebounce } from "hooks/useDebounce";
 
 export function VideoListing() {
   const {
@@ -11,7 +13,9 @@ export function VideoListing() {
   } = useVideosAndCategories();
 
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchValue, setSearchValue] = useState("");
   const { filteredData } = useFilteredData(activeCategory);
+  const debouncedValue = useDebounce(searchValue, 1000);
 
   const activeCategoryHandler = (categoryName) => {
     setActiveCategory(categoryName);
@@ -20,6 +24,17 @@ export function VideoListing() {
       type: "FILTER_VIDEOS_BY_CATEGORY",
       payload: categoryName,
     });
+  };
+
+  useEffect(() => {
+    videosAndCategoryDispatcher({
+      type: "FILTER_BY_SEARCH",
+      payload: debouncedValue,
+    });
+  }, [debouncedValue]);
+
+  const searchHandler = (e) => {
+    setSearchValue(e.target.value);
   };
 
   return (
@@ -41,6 +56,19 @@ export function VideoListing() {
                 activeCategory={activeCategory}
               />
             ))}
+          <form className={`${styles.searchBar} form-label-inline`}>
+            <input
+              className={`form-search ${styles.videoSearchBar}`}
+              type='search'
+              placeholder='Search'
+              aria-label='Search'
+              value={searchValue}
+              onChange={searchHandler}
+            />
+            <span className={styles.searchIcon}>
+              <ImSearch />
+            </span>
+          </form>
         </div>
         <section className={styles.videosThumbnail}>
           {filteredData &&

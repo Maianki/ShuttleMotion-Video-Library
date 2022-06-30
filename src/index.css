@@ -29,16 +29,16 @@
   padding:0;
   box-sizing: border-box;
   font-size: 62.5%;
+  scrollbar-width: thin;
+    scrollbar-color: var(--SCROLLBAR-BG-COLOR) var(--PRIMARY-COLOR-DARK-20);
 }
 
 html{
   font-family: 'Lato', sans-serif;
 }
 
-/* Works on Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--SCROLLBAR-BG-COLOR) var(--PRIMARY-COLOR-DARK-20);
+body {
+  background-color: var(--PRIMARY-COLOR-DARK-30);
 }
 
 /* Works on Chrome, Edge, and Safari */
@@ -56,9 +56,38 @@ html{
   border: 3px solid var(--PRIMARY-COLOR-DARK);
 }
 
-body{
-  background-color:var(--PRIMARY-COLOR-DARK-30);
+/*Placeholder color*/
+.form-search::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: var(--BLACK-COLOR);
 }
+
+.form-search:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: var(--BLACK-COLOR);
+  opacity: 1;
+}
+
+.form-search::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: var(--BLACK-COLOR);
+  opacity: 1;
+}
+
+.form-search:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--BLACK-COLOR);
+}
+
+.form-search::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--BLACK-COLOR);
+}
+
+.form-search::placeholder {
+  color: var(--BLACK-COLOR);
+}
+
 .text-highlight{
   color: var(--TEXT-HIGHLIGHT-COLOR);
 }

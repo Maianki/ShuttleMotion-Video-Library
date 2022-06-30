@@ -17,7 +17,6 @@ export function Signup() {
     email: "",
     password: "",
     confirmPassword: "",
-    termsAndCondition: true,
   });
 
   const { handleSignup } = useAuth();
@@ -43,7 +42,6 @@ export function Signup() {
         email: "",
         password: "",
         confirmPassword: "",
-        termsAndCondition: "",
       });
     }
   };
@@ -60,7 +58,7 @@ export function Signup() {
                 type='text'
                 id='firstName'
                 name='firstName'
-                placeholder='Singh'
+                placeholder='John'
                 value={userDetails.firstName}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -73,7 +71,7 @@ export function Signup() {
                 type='text'
                 id='lastName'
                 name='lastName'
-                placeholder='Singh'
+                placeholder='Doe'
                 value={userDetails.lastName}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -86,7 +84,7 @@ export function Signup() {
                 type='email'
                 id='email'
                 name='email'
-                placeholder='testSingh@gmail.com'
+                placeholder='johndoe@gmail.com'
                 value={userDetails.email}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -99,7 +97,7 @@ export function Signup() {
                 type={showPassWord.password ? `text` : `password`}
                 id='password'
                 name='password'
-                placeholder='********'
+                placeholder='Enter password'
                 value={userDetails.password}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -123,7 +121,7 @@ export function Signup() {
                 type={showPassWord.confirmPassword ? `text` : `password`}
                 id='confirm-password'
                 name='confirmPassword'
-                placeholder='Enter Pasword again'
+                placeholder='Enter pasword again'
                 value={userDetails.confirmPassword}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -139,28 +137,6 @@ export function Signup() {
               >
                 {showPassWord.confirmPassword ? <BiEye /> : <BiEyeSlash />}
               </span>
-            </div>
-
-            <div className='form-check md-vt-1 flex-row'>
-              <input
-                type='checkbox'
-                value='demo'
-                name='termsAndCondition'
-                id='terms-and-conditions'
-                checked={userDetails.termsAndCondition}
-                onChange={(e) =>
-                  setUserDetails({
-                    ...userDetails,
-                    termsAndCondition: !userDetails.termsAndCondition,
-                  })
-                }
-              />
-              <label
-                className='form-label-inline text-sm text-primary'
-                htmlFor='terms-and-conditions'
-              >
-                I accept all terms and conditions.
-              </label>
             </div>
 
             <div className='flex-column'>

@@ -11,7 +11,6 @@ export function Login() {
   const [userDetails, setUserDetails] = useState({
     email: "",
     password: "",
-    isRememberMe: true,
   });
 
   const { handleSignIn } = useAuth();
@@ -40,7 +39,7 @@ export function Login() {
                 type='email'
                 id='email'
                 name='email'
-                placeholder='testsingh@gmail.com'
+                placeholder='johndoe@gmail.com'
                 value={userDetails.email}
                 setUserDetails={setUserDetails}
                 userDetails={userDetails}
@@ -64,33 +63,6 @@ export function Login() {
               >
                 {showPassWord ? <BiEye /> : <BiEyeSlash />}
               </span>
-            </div>
-
-            <div className='form-check md-vt-1 flex-row'>
-              <input
-                type='checkbox'
-                checked={userDetails.isRememberMe}
-                onChange={() =>
-                  setUserDetails({
-                    ...userDetails,
-                    isRememberMe: !userDetails.isRememberMe,
-                  })
-                }
-                id='remember-me'
-              />
-              <label
-                className='form-label-inline text-sm text-primary'
-                htmlFor='remember-me'
-              >
-                Remember Me
-              </label>
-              <Link
-                className={`text-sm text-bold-500 ${styles.forgotPassword}`}
-                to='forgot-pwd'
-                role='button'
-              >
-                Forgot password?
-              </Link>
             </div>
 
             <div className='flex-column '>

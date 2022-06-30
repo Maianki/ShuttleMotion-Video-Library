@@ -13,9 +13,9 @@ const SnackbarProvider = ({ children }) => {
     snackbarReducer,
     snackbarInitialState
   );
-
-  const toastId = uuid();
+  
   const addSnackbar = (message, type) => {
+    const toastId = uuid();
     snackbarDispatcher({
       type: "ADD_SNACKBAR",
       payload: { toastId, type, message },

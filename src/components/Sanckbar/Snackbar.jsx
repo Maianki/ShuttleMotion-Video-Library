@@ -10,7 +10,7 @@ export function Snackbar({ message, type, handleRemoveSnackbar }) {
     }, 1500);
 
     return () => clearTimeout(timerId);
-  }, [handleRemoveSnackbar]);
+  }, []);
 
   return (
     <div

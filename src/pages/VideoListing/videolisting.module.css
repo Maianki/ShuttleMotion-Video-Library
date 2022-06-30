@@ -30,6 +30,24 @@
     gap:2rem;
 }
 
+.searchBar {
+    margin-left: auto;
+}
+
+.videoSearchBar {
+    border-radius: 25px;
+    padding: .6rem 2rem;
+    flex-grow: 1;
+    background-color: var(--GRAY-COLOR);
+    color: var(WHITE-COLOR);
+    border: none;
+}
+
+.searchIcon {
+    font-size: 2rem;
+    margin-left: -22px;
+    color: var(--BLACK-COLOR);
+}
 .videosThumbnail{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));

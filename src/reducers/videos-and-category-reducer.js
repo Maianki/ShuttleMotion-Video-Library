@@ -2,6 +2,7 @@ export const videosAndCategoryInitialState = {
   videos: [],
   categories: [],
   filterByCategory: "All",
+  filterDataBySearch: "",
 };
 
 export const videosAndCategoryReducer = (state, action) => {
@@ -13,6 +14,11 @@ export const videosAndCategoryReducer = (state, action) => {
       return { ...state, categories: payload };
     case "FILTER_VIDEOS_BY_CATEGORY":
       return { ...state, filterByCategory: payload };
+    case "FILTER_BY_SEARCH":
+      return {
+        ...state,
+        filterDataBySearch: payload,
+      };
 
     default:
       throw Error("Unknown action.");
